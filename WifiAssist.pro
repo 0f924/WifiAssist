@@ -33,3 +33,5 @@ DISTFILES +=
 
 RESOURCES += \
     resources/icon.qrc
+
+include(src/singleapplication/singleapplication.pri)
