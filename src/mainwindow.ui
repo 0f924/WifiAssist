@@ -90,7 +90,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_main">
      <property name="minimumSize">
@@ -138,7 +138,7 @@ border-width:2px
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>221</width>
+        <width>217</width>
         <height>81</height>
        </rect>
       </property>
@@ -339,6 +339,28 @@ border-width:0px</string>
         </layout>
        </item>
       </layout>
+     </widget>
+     <widget class="QLabel" name="label_tip">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>110</y>
+        <width>121</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_settings">

@@ -62,6 +62,8 @@ void MainWindow::initUIValue()
     ui->comboBox_language->clear();
     ui->comboBox_language->addItems(language_list);
 
+    ui->label_tip->setHidden(true);
+
 }
 
 void MainWindow::initUILanguageShow()
@@ -155,6 +157,18 @@ void MainWindow::on_lineEdit_name_editingFinished()
 
         ui->lineEdit_name->setEnabled(false);
         m_wsettings.setAPName(ui->lineEdit_name->text());
+
+        //add apply tips
+        ui->label_tip->setHidden(false);
+        ui->label_tip->setText("Apply WifiName Success!");
+
+        QElapsedTimer t;
+        t.start();
+        while(t.elapsed()<3000)
+            QCoreApplication::processEvents();
+        ui->label_tip->setHidden(true);
+
+
         if(QString::compare(ui->pushButton->text(),"STOP") == 0)
         {
             ui->pushButton->setText("Restaring...");
@@ -189,6 +203,17 @@ void MainWindow::on_lineEdit_pwd_editingFinished()
 
         ui->lineEdit_pwd->setEnabled(false);
         m_wsettings.setPassword(ui->lineEdit_pwd->text());
+
+        //add apply tips
+        ui->label_tip->setHidden(false);
+        ui->label_tip->setText("Apply Password Success!");
+
+        QElapsedTimer t;
+        t.start();
+        while(t.elapsed()<3000)
+            QCoreApplication::processEvents();
+        ui->label_tip->setHidden(true);
+
         if(QString::compare(ui->pushButton->text(),"STOP") == 0)
         {
             ui->pushButton->setText("Restaring...");
@@ -196,9 +221,6 @@ void MainWindow::on_lineEdit_pwd_editingFinished()
             ui->pushButton->setText("STOP");
         }
     }
-
-
-
 }
 
 void MainWindow::on_tabWidget_tabBarClicked(int index)
