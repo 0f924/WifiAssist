@@ -10,6 +10,12 @@ WSettings::WSettings():
        checkConfigFile();
 }
 
+WSettings::WSettings(bool needinit)
+{
+    if(needinit)
+        WSettings();
+}
+
 WSettings::~WSettings()
 {
     delete this->m_settings;
@@ -222,3 +228,58 @@ QStringList WSettings::getInterfaceList()
     return interface_list;
 }
 
+bool WSettings::getAPStatus()
+{
+    //read ap.pid
+    QDir dir;
+    QString config_path = dir.homePath()+"/.WifiAssist";
+    QString ap_list_filename = config_path+"/ap.pid";
+
+    QStringList ap_list = QStringList();
+
+    QFile inputFile(ap_list_filename);
+    if(inputFile.open(QIODevice::ReadOnly))
+    {
+       QTextStream in(&inputFile);
+       while (!in.atEnd())
+       {
+          QString line = in.readLine();
+          ap_list << line;
+       }
+       inputFile.close();
+    }
+    else
+    {
+        QMessageBox::warning(NULL,"Warning","Can't find interface Record");
+    }
+    if(ap_list.size() > 0)
+        return true;
+    return false;
+}
+
+QStringList WSettings::getClientList()
+{
+    //read ap.pid
+    QDir dir;
+    QString config_path = dir.homePath()+"/.WifiAssist";
+    QString client_list_filename = config_path+"/client.list";
+
+    QStringList client_list = QStringList();
+
+    QFile inputFile(client_list_filename);
+    if(inputFile.open(QIODevice::ReadOnly))
+    {
+       QTextStream in(&inputFile);
+       while (!in.atEnd())
+       {
+          QString line = in.readLine();
+          client_list << line;
+       }
+       inputFile.close();
+    }
+    else
+    {
+        QMessageBox::warning(NULL,"Warning","Can't find interface Record");
+    }
+    return client_list;
+}

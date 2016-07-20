@@ -6,11 +6,16 @@
 #include <QMenu>
 #include <QSharedMemory>
 #include <QMutex>
+
+#include <iostream>
+
 #include "wifi.h"
 #include "wdevices.h"
 #include "wsettings.h"
 #include "about.h"
+#include "wthread.h"
 
+using namespace std;
 namespace Ui {
 class MainWindow;
 }
@@ -52,8 +57,12 @@ private:
     void createSystemTrayMenu(); //create customize menu
     void initUILanguageShow();
     void initUIValue();
+    WThread *_thread;
 
     int m_mutex;
+
+public slots:
+    void updateClients(QStringList);
 
 };
 

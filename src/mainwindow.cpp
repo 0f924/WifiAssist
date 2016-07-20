@@ -15,6 +15,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
     m_mutex = 0;
+    _thread = new WThread();
+
+    ////////////////////////////////
+    //signal-slot:
+    connect(_thread,SIGNAL(updateUI(QStringList)),this,SLOT(updateClients(QStringList)),Qt::QueuedConnection);
+
 
     //init UI information
     initUIValue();
@@ -296,4 +302,10 @@ void MainWindow::on_actionAbout_triggered()
     About *aboutDlg = new About;
     aboutDlg->show();
     aboutDlg->exec();
+}
+
+void MainWindow::updateClients(QStringList clients)
+{
+    for(int i=0;i<clients.size();i++)
+        cout<<"clients:"<<clients.at(i).toStdString()<<endl;
 }

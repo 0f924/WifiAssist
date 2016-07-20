@@ -8,7 +8,18 @@ class WDevices
 {
 public:
     WDevices();
-    QString getDevicesList();
+    WDevices(QString ip,QString mac,QString hostname);
+    QString ip() const;
+
+    QString mac() const;
+
+    QString hostname() const;
+
+private:
+    QString _ip;
+    QString _mac;
+    QString _hostname;
+
 };
 
 #endif // WDEVICES_H

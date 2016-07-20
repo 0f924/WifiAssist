@@ -817,10 +817,11 @@ list_running() {
         IFACE=${IFACE%%.*}
         wifi_iface=$(cat $x/wifi_iface)
 
-        if [[ $IFACE == $wifi_iface ]]; then
+		if [[ $IFACE == $wifi_iface ]]; then
             echo $(cat $x/pid) $IFACE
         else
-            echo $(cat $x/pid) $IFACE '('$(cat $x/wifi_iface)')'
+#echo $(cat $x/pid) $IFACE '('$(cat $x/wifi_iface)')'
+            echo $(cat $x/pid) $IFACE $(cat $x/wifi_iface)
         fi
     done
     mutex_unlock
@@ -859,7 +860,8 @@ print_client() {
     [[ -z "$ipaddr" ]] && ipaddr="*"
     [[ -z "$hostname" ]] && hostname="*"
 
-    printf "%-20s %-18s %s\n" "$mac" "$ipaddr" "$hostname"
+#printf "%-20s %-18s %s\n" "$mac" "$ipaddr" "$hostname"
+    printf "%s %s %s\n" "$mac" "$ipaddr" "$hostname"
 }
 
 list_clients() {
@@ -886,11 +888,11 @@ list_clients() {
         local client_list=$(iw dev "$wifi_iface" station dump | awk "$awk_cmd")
 
         if [[ -z "$client_list" ]]; then
-            echo "No clients connected"
+#echo "No clients connected"
             return
         fi
 
-        printf "%-20s %-18s %s\n" "MAC" "IP" "Hostname"
+#printf "%-20s %-18s %s\n" "MAC" "IP" "Hostname"
 
         local mac
         for mac in $client_list; do
@@ -1218,7 +1220,6 @@ trap "die" SIGUSR2
 [[ -n "$STORE_CONFIG" ]] && write_config "$@"
 
 if [[ $LIST_RUNNING -eq 1 ]]; then
-    echo -e "List of running $PROGNAME instances:\n"
     list_running
     exit 0
 fi

@@ -15,6 +15,7 @@ class WSettings
 {
 public:
     WSettings();
+    WSettings(bool ifinit);
     ~WSettings();
 
     QSettings *m_settings;
@@ -51,6 +52,8 @@ public:
     void checkConfigFile();
     void setDefaultConfig();
     QStringList getInterfaceList();
+    bool getAPStatus();
+    QStringList getClientList();
 };
 
 #endif // WSETTINGS_H

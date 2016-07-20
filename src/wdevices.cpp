@@ -7,7 +7,25 @@ WDevices::WDevices()
 
 }
 
-QString WDevices::getDevicesList()
+WDevices::WDevices(QString ip, QString mac,QString hostname)
 {
+    this->_hostname = hostname;
+    this->_ip = ip;
+    this->_mac = mac;
+}
+
+QString WDevices::ip() const
+{
+    return _ip;
+}
+
+QString WDevices::mac() const
+{
+    return _mac;
+}
+
+QString WDevices::hostname() const
+{
+    return _hostname;
 }
 
