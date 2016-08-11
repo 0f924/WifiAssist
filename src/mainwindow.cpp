@@ -38,6 +38,25 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::setMainWindowVisibility(bool state)
+{
+    if(state){
+        showNormal();
+        setWindowState(Qt::WindowNoState);
+        qApp->processEvents();
+        setWindowState(Qt::WindowActive);
+        qApp->processEvents();
+        qApp->setActiveWindow(this);
+        qApp->processEvents();
+    //    m_restoreAction->setText(tr("&Hide Notes"));
+    }else{
+    //    m_restoreAction->setText(tr("&Show Notes"));
+        hide();
+    }
+}
+
+
 void MainWindow::initUIValue()
 {
     ui->lineEdit_name->setText(m_wsettings.APName());
@@ -309,3 +328,4 @@ void MainWindow::updateClients(QStringList clients)
     for(int i=0;i<clients.size();i++)
         cout<<"clients:"<<clients.at(i).toStdString()<<endl;
 }
+

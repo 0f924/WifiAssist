@@ -27,6 +27,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void setMainWindowVisibility(bool state);
+
     Wifi wifi;
     WSettings m_wsettings;
     QString path;
