@@ -1,12 +1,14 @@
 #include "mainwindow.h"
-#include <QApplication>
 #include "singleinstance.h"
 #include "QSimpleUpdater.h"
+
+#include <QApplication>
 
 const QString UPDATES_URL = "https://raw.githubusercontent.com/lzjqsdd/WifiAssist/master/etc/UPDATES.json";
 
 int main(int argc, char *argv[])
 {
+    QApplication::setDesktopSettingsAware(false);
     QApplication app(argc, argv);
 
 	//set application information
@@ -33,11 +35,16 @@ int main(int argc, char *argv[])
         (&w)->setMainWindowVisibility(true);
     });
 
+
     //Update WifiAssist
-    QSimpleUpdater::getInstance()->setDownloaderEnabled(UPDATES_URL,true);
+    // Disable the integrated downloader, just open a link in a web browser
+    QSimpleUpdater::getInstance()->setDownloaderEnabled (UPDATES_URL, false);
+
+    // Only notify the user when an update is available
     QSimpleUpdater::getInstance()->setNotifyOnUpdate (UPDATES_URL, true);
     QSimpleUpdater::getInstance()->setNotifyOnFinish (UPDATES_URL, false);
 
-    QSimpleUpdater::getInstance()->checkForUpdates (url);
+    // Check for updates
+    QSimpleUpdater::getInstance()->checkForUpdates (UPDATES_URL);
     return app.exec();
 }

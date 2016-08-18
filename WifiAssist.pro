@@ -4,36 +4,35 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = ../INSTALL/WifiAssist
 TEMPLATE = app
+CONFIG   += c++11
 
+include($$PWD/3rdParty/QSimpleUpdater/QSimpleUpdater.pri)
 
-SOURCES += src/main.cpp\
-        src/mainwindow.cpp \
-    src/wifi.cpp \
-    src/wsettings.cpp \
-    src/wdevices.cpp \
-    src/about.cpp \
-    src/wthread.cpp
+SOURCES += $$PWD/src/main.cpp\
+    $$PWD/src/mainwindow.cpp \
+    $$PWD/src/wifi.cpp \
+    $$PWD/src/wsettings.cpp \
+    $$PWD/src/wdevices.cpp \
+    $$PWD/src/about.cpp \
+    $$PWD/src/singleinstance.cpp
 
 HEADERS  += src/mainwindow.h \
-    src/wifi.h \
-    src/wsettings.h \
-    src/wdevices.h \
-    src/about.h \
-    src/wthread.h
-    ui_mainwindow.h
+    $$PWD/src/wifi.h \
+    $$PWD/src/wsettings.h \
+    $$PWD/src/wdevices.h \
+    $$PWD/src/about.h \
+    $$PWD/src/singleinstance.h \
 
-FORMS    += src/mainwindow.ui \
-    src/about.ui
+FORMS    += $$PWD/src/mainwindow.ui \
+    $$PWD/src/about.ui
 
 DISTFILES +=
 
 RESOURCES += \
-    resources/icon.qrc
-
-include($$PWD/3rdParty/QSimpleUpdater/QSimpleUpdater.pri)
+    $$PWD/resources/icon.qrc

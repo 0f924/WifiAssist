@@ -10,26 +10,21 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    m_trayIcon(new QSystemTrayIcon(this)),
+    m_restoreAction(new QAction(tr("&Hide WifiAssist"), this)),
+    m_quitAction(new QAction(tr("&Quit"), this)),
+    m_trayIconMenu(new QMenu(this)),
+    m_mutex(0)
 {
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
-    m_mutex = 0;
-    _thread = new WThread();
 
-    ////////////////////////////////
-    //signal-slot:
-    connect(_thread,SIGNAL(updateUI(QStringList)),this,SLOT(updateClients(QStringList)),Qt::QueuedConnection);
-
-
-    //init UI information
     initUIValue();
-
-    //initUILanguage
     initUILanguageShow();
 
-    //create SystemTrayIcon Control
-   // this->createSystemTrayMenu();
+    setupTrayIcon();
+    setupSignalsSlots();
 }
 
 MainWindow::~MainWindow()
@@ -38,6 +33,18 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::setupSignalsSlots()
+{
+    //signal-slot:
+    //connect(_thread,SIGNAL(updateUI(QStringList)),this,SLOT(updateClients(QStringList)),Qt::QueuedConnection);
+
+    connect(m_restoreAction, &QAction::triggered, this, [this](){
+        setMainWindowVisibility(isHidden()
+                                || windowState() == Qt::WindowMinimized
+                                || (qApp->applicationState() == Qt::ApplicationInactive));
+    });
+    connect(m_quitAction, &QAction::triggered, this, &MainWindow::close);
+}
 
 void MainWindow::setMainWindowVisibility(bool state)
 {
@@ -49,9 +56,9 @@ void MainWindow::setMainWindowVisibility(bool state)
         qApp->processEvents();
         qApp->setActiveWindow(this);
         qApp->processEvents();
-    //    m_restoreAction->setText(tr("&Hide Notes"));
+        m_restoreAction->setText(tr("&Hide WifiAssist"));
     }else{
-    //    m_restoreAction->setText(tr("&Show Notes"));
+        m_restoreAction->setText(tr("&Show WifiAssist"));
         hide();
     }
 }
@@ -116,26 +123,19 @@ void MainWindow::initUILanguageShow()
     }
 }
 
-void MainWindow::createSystemTrayMenu()
+void MainWindow::setupTrayIcon()
 {
     //Check if System Support SystemTrayIcon.
     //Linux:X11
     if(QSystemTrayIcon::isSystemTrayAvailable())
     {
+        m_trayIconMenu->addAction(m_restoreAction);
+        m_trayIconMenu->addSeparator();
+        m_trayIconMenu->addAction(m_quitAction);
 
-        m_trayIcon.setIcon(QIcon("img/WifiAssit.ico"));
-        m_trayIcon.setToolTip((tr("WifiAssist Running...")));
-        QString titlec=tr("WifiAssist Info");
-        QString textc=tr("Click For Detaili Options");
-        //弹出气泡提示
-        //m_trayIcon.showMessage(titlec,textc,QSystemTrayIcon::Information,5000);
-
-        QMenu m_menu;
-        m_menu.addAction("StartWifi");
-        m_menu.addAction("StopWifi");
-        m_trayIcon.setContextMenu(&m_menu);
-
-        m_trayIcon.show();
+        m_trayIcon->setIcon(QIcon(":img/WifiAssist.ico"));
+        m_trayIcon->setContextMenu(m_trayIconMenu);
+        m_trayIcon->show();
      }
 }
 
