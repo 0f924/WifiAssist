@@ -4,7 +4,7 @@
   The easy way to use Wifi through PC.
   类似windows平台下的猎豹免费wifi
   
-## Lastest Version(最新版) [Download](https://github.com/lzjqsdd/WifiAssist/archive/v0.6.3.zip)  
+## Lastest Version(最新版) [Download](https://github.com/lzjqsdd/WifiAssist/archive/v0.7.zip)  
   
   
 ## TODOLIST
