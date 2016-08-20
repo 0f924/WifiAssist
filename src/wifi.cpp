@@ -23,8 +23,8 @@ bool Wifi::startWifi()
 
     //use --no-virt option if shared interface is different from create_interface
     // this option will be moved to high-level configuration(maybe in version2.0)
-    if(m_settings.Interface_Create() != m_settings.Interface_Shared())
-        args << _no_virt;
+    //if(m_settings.Interface_Create() != m_settings.Interface_Shared())
+    //    args << _no_virt;
 
     //default to run wifiassist in deamon mode.
     args << _deamon;
