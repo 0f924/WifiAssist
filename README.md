@@ -12,26 +12,34 @@
 - [x] 增加接入点设置、wifi名称、密码设置,重置设置
 - [x] 桌面图标启动
 - [x] 自动获取系统网卡列表
-
-###
-- [ ] 增加名称密码修改后提示
+- [x] 增加名称密码修改后提示
 - [ ] 自动更新
 - [x] 应用为单进程
 - [x] 问题报告及关于
-
-
-### Version2.0待开发
-- [ ] 系统托盘控制（14.04有bug）
+- [x] 系统托盘控制
 - [ ] 增加接入设备显示(version2.0加入)
 - [ ] 接入设备限速控制、踢人
 
-## Install 暂时不用，请直接下载最新版
+## Install
 
   ```shell
   git clone https://github.com/lzjqsdd/WifiAssist.git
-  cd WifiAssist`
+  cd WifiAssist
   sudo ./install.sh
   ```
+  
+## 或编译安装(32为系统需要自己编译)
+  ```
+  sudo apt-get update -qq
+  sudo apt-get -y install qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
+  sudo apt-get -y install qt5-default qttools5-dev-tools
+  git clone https://github.com/lzjqsdd/WifiAssist.git
+  cd WifiAssist/build
+  make
+  cd ../INSTALL
+  sudo ./install.sh
+  ```
+  
 ## 运行
 - 终端执行WifiAssist
 - 或dash搜索应用WifiAssit，点击图标执行。
