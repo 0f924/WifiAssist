@@ -3,6 +3,7 @@
 #include "QSimpleUpdater.h"
 
 #include <QApplication>
+#include <QDesktopWidget>
 
 const QString UPDATES_URL = "https://raw.githubusercontent.com/lzjqsdd/WifiAssist/master/etc/UPDATES.json";
 
@@ -29,6 +30,7 @@ int main(int argc, char *argv[])
 	//Create and Show the app;
     MainWindow w;
     w.show();
+    w.move ((QApplication::desktop()->width() - w.width())/2,(QApplication::desktop()->height() - w.height())/2);
 
     // Bring the WifiAssist window to the front
     QObject::connect(&instance, &SingleInstance::newInstance, [&](){

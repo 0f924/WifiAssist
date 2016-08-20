@@ -11,14 +11,15 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
+    m_mutex(0),
     m_trayIcon(new QSystemTrayIcon(this)),
     m_restoreAction(new QAction(tr("&Hide WifiAssist"), this)),
     m_quitAction(new QAction(tr("&Quit"), this)),
-    m_trayIconMenu(new QMenu(this)),
-    m_mutex(0)
+    m_trayIconMenu(new QMenu(this))
 {
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
+    ui->tabWidget->removeTab(1);
 
     initUIValue();
     initUILanguageShow();
@@ -246,10 +247,6 @@ void MainWindow::on_lineEdit_pwd_editingFinished()
             ui->pushButton->setText("STOP");
         }
     }
-}
-
-void MainWindow::on_tabWidget_tabBarClicked(int index)
-{
 }
 
 void MainWindow::on_pushButton_save_clicked()

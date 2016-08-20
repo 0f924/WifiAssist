@@ -36,7 +36,6 @@ private slots:
     void on_lineEdit_name_editingFinished();
     void on_pushButton_pwd_clicked();
     void on_lineEdit_pwd_editingFinished();
-    void on_tabWidget_tabBarClicked(int index);
     void on_pushButton_save_clicked();
     void on_pushButton_reset_clicked();
     void on_actionAbout_triggered();
