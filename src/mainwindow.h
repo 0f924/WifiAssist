@@ -7,6 +7,7 @@
 #include <QSharedMemory>
 #include <QMutex>
 #include <QAction>
+#include <QCloseEvent>
 
 #include <iostream>
 
@@ -30,6 +31,9 @@ public:
     ~MainWindow();
     void setMainWindowVisibility(bool state);
 
+protected:
+    void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
+
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_name_clicked();
@@ -45,6 +49,7 @@ private:
     Ui::MainWindow *ui;
 
     int m_mutex;
+    int m_information_count;
 
     Wifi wifi;
     WSettings m_wsettings;
@@ -54,6 +59,8 @@ private:
     QSystemTrayIcon* m_trayIcon;
     QAction* m_restoreAction;
     QAction* m_quitAction;
+    QAction* m_controlWifi;
+    QAction* m_restartWifi;
     QMenu* m_trayIconMenu;
 
     void createSystemTrayMenu(); //create customize menu

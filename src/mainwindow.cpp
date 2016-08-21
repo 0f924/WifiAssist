@@ -12,9 +12,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     m_mutex(0),
+    m_information_count(0),
     m_trayIcon(new QSystemTrayIcon(this)),
     m_restoreAction(new QAction(tr("&Hide WifiAssist"), this)),
     m_quitAction(new QAction(tr("&Quit"), this)),
+    m_controlWifi(new QAction(tr("&Start Wifi"),this)),
+    m_restartWifi(new QAction(tr("&Restart Wifi"),this)),
     m_trayIconMenu(new QMenu(this))
 {
     ui->setupUi(this);
@@ -45,6 +48,12 @@ void MainWindow::setupSignalsSlots()
                                 || (qApp->applicationState() == Qt::ApplicationInactive));
     });
     connect(m_quitAction, &QAction::triggered, this, &MainWindow::close);
+    connect(m_controlWifi,&QAction::triggered,this,&MainWindow::on_pushButton_clicked);
+    connect(m_restartWifi,&QAction::triggered,this,[this](){
+        ui->pushButton->setText("Restaring...");
+        wifi.restartWifi();
+        ui->pushButton->setText("STOP");
+    });
 }
 
 void MainWindow::setMainWindowVisibility(bool state)
@@ -68,16 +77,8 @@ void MainWindow::setMainWindowVisibility(bool state)
 void MainWindow::initUIValue()
 {
     ui->lineEdit_name->setText(m_wsettings.APName());
-
     ui->lineEdit_pwd ->setText(m_wsettings.Password());
-
     ui->lineEdit_ap->setText(m_wsettings.AccessPoint());
-
-
-   /* QRegExp ipRx("((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-4]|[01]?\\d\\d?)");
-    QRegExpValidator *v = new QRegExpValidator(ipRx,this);
-    ui->lineEdit_ap->setValidator(v);
-    ui->lineEdit_ap->setInputMask("000.000.000.000;\ ");*/
 
 
     //get interface list
@@ -132,6 +133,9 @@ void MainWindow::setupTrayIcon()
     {
         m_trayIconMenu->addAction(m_restoreAction);
         m_trayIconMenu->addSeparator();
+        m_trayIconMenu->addAction(m_controlWifi);
+        m_trayIconMenu->addAction(m_restartWifi);
+        m_trayIconMenu->addSeparator();
         m_trayIconMenu->addAction(m_quitAction);
 
         m_trayIcon->setIcon(QIcon(":img/WifiAssist.ico"));
@@ -147,12 +151,18 @@ void MainWindow::on_pushButton_clicked()
     if(QString::compare(text,"START") == 0)
     {
         if(wifi.startWifi())
+        {
             ui->pushButton->setText("STOP");
+            m_controlWifi->setText(tr("Stop Wifi"));
+        }
     }
     else if(QString::compare(text,"STOP") == 0)
     {
         if(wifi.stopWifi())
+        {
             ui->pushButton->setText("START");
+            m_controlWifi->setText("Start Wifi");
+        }
     }
     else
     {
@@ -320,9 +330,26 @@ void MainWindow::on_actionAbout_triggered()
     aboutDlg->exec();
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (m_trayIcon->isVisible() && this->isVisible())
+    {
+        setMainWindowVisibility(false);
+        if(m_information_count == 0)
+        {
+            m_trayIcon->showMessage("WifiAssist",tr("Minmize to SystemTray"),QSystemTrayIcon::Information,1000);
+            m_information_count = 1;
+        }
+        event->ignore();
+    }
+    else
+    {
+        event->accept();
+    }
+}
+
 void MainWindow::updateClients(QStringList clients)
 {
     for(int i=0;i<clients.size();i++)
         cout<<"clients:"<<clients.at(i).toStdString()<<endl;
 }
-
