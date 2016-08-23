@@ -35,4 +35,9 @@ FORMS    += $$PWD/src/mainwindow.ui \
 DISTFILES +=
 
 RESOURCES += \
-    $$PWD/resources/icon.qrc
+    $$PWD/resources/icon.qrc \
+    $$PWD/resources/i18n.qrc
+
+TRANSLATIONS += \
+    $$PWD/resources/i18n/zh_CN.ts \
+    $$PWD/resources/i18n/zh_TW.ts \

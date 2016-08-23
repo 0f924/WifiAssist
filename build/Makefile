@@ -59,6 +59,7 @@ SOURCES       = ../3rdParty/QSimpleUpdater/src/Updater.cpp \
 		../src/about.cpp \
 		../src/singleinstance.cpp qrc_qsimpleupdater.cpp \
 		qrc_icon.cpp \
+		qrc_i18n.cpp \
 		moc_QSimpleUpdater.cpp \
 		moc_Updater.cpp \
 		moc_Downloader.cpp \
@@ -77,6 +78,7 @@ OBJECTS       = Updater.o \
 		singleinstance.o \
 		qrc_qsimpleupdater.o \
 		qrc_icon.o \
+		qrc_i18n.o \
 		moc_QSimpleUpdater.o \
 		moc_Updater.o \
 		moc_Downloader.o \
@@ -407,6 +409,7 @@ Makefile: ../WifiAssist.pro /usr/local/Qt5.5.1/5.5/gcc_64/mkspecs/linux-g++/qmak
 		../WifiAssist.pro \
 		../3rdParty/QSimpleUpdater/etc/resources/qsimpleupdater.qrc \
 		../resources/icon.qrc \
+		../resources/i18n.qrc \
 		/usr/local/Qt5.5.1/5.5/gcc_64/lib/libQt5Widgets.prl \
 		/usr/local/Qt5.5.1/5.5/gcc_64/lib/libQt5Gui.prl \
 		/usr/local/Qt5.5.1/5.5/gcc_64/lib/libQt5Network.prl \
@@ -551,6 +554,7 @@ Makefile: ../WifiAssist.pro /usr/local/Qt5.5.1/5.5/gcc_64/mkspecs/linux-g++/qmak
 ../WifiAssist.pro:
 ../3rdParty/QSimpleUpdater/etc/resources/qsimpleupdater.qrc:
 ../resources/icon.qrc:
+../resources/i18n.qrc:
 /usr/local/Qt5.5.1/5.5/gcc_64/lib/libQt5Widgets.prl:
 /usr/local/Qt5.5.1/5.5/gcc_64/lib/libQt5Gui.prl:
 /usr/local/Qt5.5.1/5.5/gcc_64/lib/libQt5Network.prl:
@@ -569,10 +573,11 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../3rdParty/QSimpleUpdater/etc/resources/qsimpleupdater.qrc ../resources/icon.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../3rdParty/QSimpleUpdater/etc/resources/qsimpleupdater.qrc ../resources/icon.qrc ../resources/i18n.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../3rdParty/QSimpleUpdater/include/QSimpleUpdater.h ../3rdParty/QSimpleUpdater/src/Updater.h ../3rdParty/QSimpleUpdater/src/Downloader.h ../src/mainwindow.h ../src/wifi.h ../src/wsettings.h ../src/wdevices.h ../src/about.h ../src/singleinstance.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../3rdParty/QSimpleUpdater/src/Updater.cpp ../3rdParty/QSimpleUpdater/src/Downloader.cpp ../3rdParty/QSimpleUpdater/src/QSimpleUpdater.cpp ../src/main.cpp ../src/mainwindow.cpp ../src/wifi.cpp ../src/wsettings.cpp ../src/wdevices.cpp ../src/about.cpp ../src/singleinstance.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../3rdParty/QSimpleUpdater/src/Downloader.ui ../src/mainwindow.ui ../src/about.ui $(DISTDIR)/
+	$(COPY_FILE) --parents /home/lzjqsdd/github/WifiAssist/resources/i18n/zh_CN.ts /home/lzjqsdd/github/WifiAssist/resources/i18n/zh_TW.ts $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -593,9 +598,9 @@ mocables: compiler_moc_header_make_all compiler_moc_source_make_all
 
 check: first
 
-compiler_rcc_make_all: qrc_qsimpleupdater.cpp qrc_icon.cpp
+compiler_rcc_make_all: qrc_qsimpleupdater.cpp qrc_icon.cpp qrc_i18n.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_qsimpleupdater.cpp qrc_icon.cpp
+	-$(DEL_FILE) qrc_qsimpleupdater.cpp qrc_icon.cpp qrc_i18n.cpp
 qrc_qsimpleupdater.cpp: ../3rdParty/QSimpleUpdater/etc/resources/qsimpleupdater.qrc \
 		../3rdParty/QSimpleUpdater/etc/resources/update.png
 	/usr/local/Qt5.5.1/5.5/gcc_64/bin/rcc -name qsimpleupdater ../3rdParty/QSimpleUpdater/etc/resources/qsimpleupdater.qrc -o qrc_qsimpleupdater.cpp
@@ -607,6 +612,11 @@ qrc_icon.cpp: ../resources/icon.qrc \
 		../resources/img/WifiAssistIcon_100x100.jpg \
 		../resources/img/Settings.ico
 	/usr/local/Qt5.5.1/5.5/gcc_64/bin/rcc -name icon ../resources/icon.qrc -o qrc_icon.cpp
+
+qrc_i18n.cpp: ../resources/i18n.qrc \
+		../resources/i18n/zh_TW.qm \
+		../resources/i18n/zh_CN.qm
+	/usr/local/Qt5.5.1/5.5/gcc_64/bin/rcc -name i18n ../resources/i18n.qrc -o qrc_i18n.cpp
 
 compiler_moc_header_make_all: moc_QSimpleUpdater.cpp moc_Updater.cpp moc_Downloader.cpp moc_mainwindow.cpp moc_about.cpp moc_singleinstance.cpp
 compiler_moc_header_clean:
@@ -879,6 +889,53 @@ moc_Downloader.cpp: /usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QDialog \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qvector2d.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_Downloader.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QVariant \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QAction \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qaction.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qicon.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qactiongroup.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QApplication \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qapplication.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qcoreapplication.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qeventloop.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qguiapplication.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qinputmethod.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QButtonGroup \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QHBoxLayout \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qboxlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgridlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QHeaderView \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qheaderview.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qframe.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qstyleoption.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qvalidator.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qregularexpression.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qslider.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractslider.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qstyle.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtabbar.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtabwidget.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qrubberband.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QLabel \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlabel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QProgressBar \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qprogressbar.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QPushButton \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QSpacerItem \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QVBoxLayout \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QWidget \
 		../3rdParty/QSimpleUpdater/src/Downloader.h
 	/usr/local/Qt5.5.1/5.5/gcc_64/bin/moc $(DEFINES) -I/usr/local/Qt5.5.1/5.5/gcc_64/mkspecs/linux-g++ -I/home/lzjqsdd/github/WifiAssist -I/home/lzjqsdd/github/WifiAssist/3rdParty/QSimpleUpdater/include -I/usr/local/Qt5.5.1/5.5/gcc_64/include -I/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets -I/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui -I/usr/local/Qt5.5.1/5.5/gcc_64/include/QtNetwork -I/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore -I. ../3rdParty/QSimpleUpdater/src/Downloader.h -o moc_Downloader.cpp
 
@@ -997,6 +1054,10 @@ moc_mainwindow.cpp: /usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QMainWindow 
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qsharedmemory.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QMutex \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QAction \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/QCloseEvent \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QStringList \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QTranslator \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qtranslator.h \
 		../src/wifi.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QString \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QMessageBox \
@@ -1019,7 +1080,6 @@ moc_mainwindow.cpp: /usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QMainWindow 
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QElapsedTimer \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qelapsedtimer.h \
 		../src/wdevices.h \
-		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QStringList \
 		../src/about.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QDialog \
 		../src/wthread.h \
@@ -1367,12 +1427,10 @@ Updater.o: ../3rdParty/QSimpleUpdater/src/Updater.cpp ../3rdParty/QSimpleUpdater
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qvector2d.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_Downloader.h \
-		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QJsonValue \
-		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qjsonvalue.h \
-		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QJsonObject \
-		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qjsonobject.h \
-		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QMessageBox \
-		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qmessagebox.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QAction \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qaction.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qicon.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qactiongroup.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QApplication \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qapplication.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1380,6 +1438,47 @@ Updater.o: ../3rdParty/QSimpleUpdater/src/Updater.cpp ../3rdParty/QSimpleUpdater
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qguiapplication.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qinputmethod.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QButtonGroup \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QHBoxLayout \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qboxlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgridlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QHeaderView \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qheaderview.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qframe.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qstyleoption.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qvalidator.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qregularexpression.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qslider.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractslider.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qstyle.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtabbar.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtabwidget.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qrubberband.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QLabel \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlabel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QProgressBar \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qprogressbar.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QPushButton \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QSpacerItem \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QVBoxLayout \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QWidget \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QJsonValue \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qjsonvalue.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QJsonObject \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qjsonobject.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QMessageBox \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qmessagebox.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QJsonDocument \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qjsondocument.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/QDesktopServices \
@@ -1492,6 +1591,53 @@ Downloader.o: ../3rdParty/QSimpleUpdater/src/Downloader.cpp ../3rdParty/QSimpleU
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qvector2d.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qtouchdevice.h \
 		ui_Downloader.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QVariant \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QAction \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qaction.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qicon.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qactiongroup.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QApplication \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qapplication.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qcoreapplication.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qeventloop.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qguiapplication.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qinputmethod.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QButtonGroup \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QHBoxLayout \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qboxlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgridlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QHeaderView \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qheaderview.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qframe.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qstyleoption.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qvalidator.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qregularexpression.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qslider.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractslider.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qstyle.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtabbar.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtabwidget.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qrubberband.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QLabel \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlabel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QProgressBar \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qprogressbar.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QPushButton \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QSpacerItem \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QVBoxLayout \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QWidget \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QDir \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qdir.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qfileinfo.h \
@@ -1504,7 +1650,6 @@ Downloader.o: ../3rdParty/QSimpleUpdater/src/Downloader.cpp ../3rdParty/QSimpleU
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtNetwork/qnetworkreply.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QIODevice \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QString \
-		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QVariant \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtNetwork/QNetworkRequest \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtNetwork/qnetworkrequest.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QSharedDataPointer \
@@ -1749,6 +1894,10 @@ main.o: ../src/main.cpp ../src/mainwindow.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qsharedmemory.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QMutex \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QAction \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/QCloseEvent \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QStringList \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QTranslator \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qtranslator.h \
 		../src/wifi.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QString \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QMessageBox \
@@ -1771,7 +1920,6 @@ main.o: ../src/main.cpp ../src/mainwindow.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QElapsedTimer \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qelapsedtimer.h \
 		../src/wdevices.h \
-		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QStringList \
 		../src/about.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QDialog \
 		../src/wthread.h \
@@ -1911,6 +2059,10 @@ mainwindow.o: ../src/mainwindow.cpp ../src/mainwindow.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qsharedmemory.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QMutex \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QAction \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/QCloseEvent \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QStringList \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QTranslator \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qtranslator.h \
 		../src/wifi.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QString \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QMessageBox \
@@ -1933,13 +2085,64 @@ mainwindow.o: ../src/mainwindow.cpp ../src/mainwindow.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QElapsedTimer \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qelapsedtimer.h \
 		../src/wdevices.h \
-		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QStringList \
 		../src/about.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QDialog \
 		../src/wthread.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QThread \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qthread.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QVariant \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QApplication \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qapplication.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qguiapplication.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qinputmethod.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QButtonGroup \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QComboBox \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qcombobox.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qstyleoption.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qvalidator.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qregularexpression.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qslider.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractslider.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qstyle.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtabbar.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qrubberband.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qframe.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QHBoxLayout \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qboxlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgridlayout.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QHeaderView \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qheaderview.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QLabel \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlabel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QLineEdit \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlineedit.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qtextcursor.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qtextformat.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qpen.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qtextoption.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QListView \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlistview.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QMenuBar \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qmenubar.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QPushButton \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QStatusBar \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qstatusbar.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QTabWidget \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QVBoxLayout \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../src/mainwindow.cpp
 
 wifi.o: ../src/wifi.cpp ../src/wifi.h \
@@ -2402,7 +2605,51 @@ about.o: ../src/about.cpp ../src/about.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qfiledevice.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qvector2d.h \
 		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qtouchdevice.h \
-		ui_about.h
+		ui_about.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/QVariant \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QAction \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qaction.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qicon.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qactiongroup.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QApplication \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qapplication.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qcoreapplication.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qeventloop.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qguiapplication.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qinputmethod.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QButtonGroup \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QDialogButtonBox \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QHeaderView \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qheaderview.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qframe.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qstyleoption.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qvalidator.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtCore/qregularexpression.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qslider.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractslider.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qstyle.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtabbar.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtabwidget.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qrubberband.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QLabel \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qlabel.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QTextBrowser \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtextbrowser.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtextedit.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qtextdocument.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qtextoption.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qtextcursor.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qtextformat.h \
+		/usr/local/Qt5.5.1/5.5/gcc_64/include/QtGui/qpen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o about.o ../src/about.cpp
 
 singleinstance.o: ../src/singleinstance.cpp ../src/singleinstance.h \
@@ -2484,6 +2731,9 @@ qrc_qsimpleupdater.o: qrc_qsimpleupdater.cpp
 
 qrc_icon.o: qrc_icon.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_icon.o qrc_icon.cpp
+
+qrc_i18n.o: qrc_i18n.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_i18n.o qrc_i18n.cpp
 
 moc_QSimpleUpdater.o: moc_QSimpleUpdater.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_QSimpleUpdater.o moc_QSimpleUpdater.cpp

@@ -4,15 +4,20 @@
 
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QTranslator>
 
 const QString UPDATES_URL = "https://raw.githubusercontent.com/lzjqsdd/WifiAssist/master/etc/UPDATES.json";
 
 int main(int argc, char *argv[])
 {
+    QTranslator translator;
+    translator.load(":/i18n/zh_CN");
+
     QApplication::setDesktopSettingsAware(false);
     QApplication app(argc, argv);
 
 	//set application information
+    app.installTranslator(&translator);
 	app.setApplicationName("WifiAssist");
 	app.setApplicationVersion("v0.6.2");
     app.setWindowIcon(QIcon("img/WifiAssit.ico"));

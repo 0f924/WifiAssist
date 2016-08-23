@@ -8,6 +8,8 @@
 #include <QMutex>
 #include <QAction>
 #include <QCloseEvent>
+#include <QStringList>
+#include <QTranslator>
 
 #include <iostream>
 
@@ -68,6 +70,9 @@ private:
     void initUIValue();
     void setupTrayIcon();
     void setupSignalsSlots();
+    QStringList findQmFiles();
+    void setupLanguageOption();
+    QString languageName(const QString &qmFile);
 };
 
 #endif // MAINWINDOW_H
