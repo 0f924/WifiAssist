@@ -11,7 +11,7 @@
     <message>
         <location filename="../../src/about.cpp" line="20"/>
         <source>WifiAssist 基于QT5开发，帮助用户在Linux系统上快速建立热点的小工具项目地址：www.github.com/lzjqsdd/WifiAssist</source>
-        <translation type="unfinished">WifiAssist 基于QT5开发，帮助用户在Linux系统上快速建立热点的小工具项目地址：www.github.com/lzjqsdd/WifiAssist</translation>
+        <translation>WifiAssist 基于QT5开发，帮助用户在Linux系统上快速建立热点的小工具项目地址：www.github.com/lzjqsdd/WifiAssist</translation>
     </message>
 </context>
 <context>
@@ -159,207 +159,218 @@
     <name>MainWindow</name>
     <message>
         <location filename="../../src/mainwindow.ui" line="40"/>
-        <location filename="../../src/mainwindow.cpp" line="329"/>
+        <location filename="../../src/mainwindow.cpp" line="325"/>
         <source>WifiAssist</source>
-        <translation type="unfinished">Wifi助手</translation>
+        <translation>Wifi助手</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="87"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show Connected Clients&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>显示连接设备</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="119"/>
         <source>Wifi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.ui" line="145"/>
-        <source>START</source>
-        <translation type="unfinished"></translation>
+        <translation>WIFI</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="182"/>
-        <location filename="../../src/mainwindow.cpp" line="109"/>
+        <location filename="../../src/mainwindow.cpp" line="102"/>
         <source>WifiName</source>
-        <translation type="unfinished"></translation>
+        <translation>Wifi名称</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="279"/>
-        <location filename="../../src/mainwindow.cpp" line="110"/>
+        <location filename="../../src/mainwindow.cpp" line="103"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Wifi密码</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="380"/>
         <source>Devices</source>
-        <translation type="unfinished"></translation>
+        <translation>接入设备</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="399"/>
-        <location filename="../../src/mainwindow.cpp" line="227"/>
-        <location filename="../../src/mainwindow.cpp" line="258"/>
+        <location filename="../../src/mainwindow.cpp" line="233"/>
+        <location filename="../../src/mainwindow.cpp" line="264"/>
+        <location filename="../../src/mainwindow.cpp" line="269"/>
         <location filename="../../src/mainwindow.cpp" line="274"/>
-        <location filename="../../src/mainwindow.cpp" line="282"/>
-        <location filename="../../src/mainwindow.cpp" line="304"/>
-        <location filename="../../src/mainwindow.cpp" line="312"/>
+        <location filename="../../src/mainwindow.cpp" line="280"/>
+        <location filename="../../src/mainwindow.cpp" line="288"/>
+        <location filename="../../src/mainwindow.cpp" line="300"/>
+        <location filename="../../src/mainwindow.cpp" line="308"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="425"/>
         <source>SAVE</source>
-        <translation type="unfinished"></translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="453"/>
         <source>RESET</source>
-        <translation type="unfinished"></translation>
+        <translation>重置</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="486"/>
-        <location filename="../../src/mainwindow.cpp" line="108"/>
+        <location filename="../../src/mainwindow.cpp" line="101"/>
         <source>AccessPoint</source>
-        <translation type="unfinished">接入点</translation>
+        <translation>接入点</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="544"/>
         <source>WifiInterface</source>
-        <translation type="unfinished">Wifi接口</translation>
+        <translation>Wifi接口</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="588"/>
         <location filename="../../src/mainwindow.ui" line="632"/>
-        <location filename="../../src/mainwindow.cpp" line="111"/>
+        <location filename="../../src/mainwindow.cpp" line="104"/>
         <source>SharedInterface</source>
-        <translation type="unfinished">共享网卡</translation>
+        <translation>共享网卡</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="679"/>
         <source>Option</source>
-        <translation type="unfinished">首选项</translation>
+        <translation>首选项</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="688"/>
         <source>CheckUpdate</source>
-        <translation type="unfinished">检查更新</translation>
+        <translation>检查更新</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="693"/>
         <source>About</source>
-        <translation type="unfinished">关于</translation>
+        <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="17"/>
-        <location filename="../../src/mainwindow.cpp" line="71"/>
-        <source>&amp;Hide WifiAssist</source>
-        <translation type="unfinished">隐藏</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.cpp" line="18"/>
-        <source>&amp;Quit</source>
-        <translation type="unfinished">退出</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.cpp" line="19"/>
-        <source>&amp;Start Wifi</source>
-        <translation type="unfinished">启动Wifi</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.cpp" line="20"/>
-        <source>&amp;Restart Wifi</source>
-        <translation type="unfinished">重启Wifi</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.cpp" line="73"/>
-        <source>&amp;Show WifiAssist</source>
-        <translation type="unfinished">显示</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.cpp" line="112"/>
+        <location filename="../../src/mainwindow.cpp" line="105"/>
         <source>APInterface</source>
-        <translation type="unfinished">热点网卡</translation>
+        <translation>热点网卡</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="113"/>
+        <location filename="../../src/mainwindow.cpp" line="106"/>
         <source>Language</source>
-        <translation type="unfinished">语言</translation>
+        <translation>语言</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="145"/>
+        <location filename="../../src/mainwindow.cpp" line="151"/>
         <source>Stop Wifi</source>
-        <translation type="unfinished"></translation>
+        <translation>停止 Wifi</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="153"/>
+        <location filename="../../src/mainwindow.cpp" line="159"/>
         <source>Start Wifi</source>
-        <translation type="unfinished"></translation>
+        <translation>启动 Wifi</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="188"/>
+        <location filename="../../src/mainwindow.cpp" line="69"/>
+        <source>Hide WifiAssist</source>
+        <translation>隐藏</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="vanished">退出</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="127"/>
+        <source>Restart Wifi</source>
+        <translation>重启Wifi</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="71"/>
+        <source>Show WifiAssist</source>
+        <translation>显示</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="124"/>
+        <source>&amp;Hide WifiAssist</source>
+        <translation>隐藏</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="125"/>
+        <source>&amp;Quit</source>
+        <translation>退出</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="126"/>
+        <source>&amp;Start Wifi</source>
+        <translation>启动 Wifi</translation>
+    </message>
+    <message>
+        <source>&amp;Restart Wifi</source>
+        <translation type="vanished">重启Wifi</translation>
+    </message>
+    <message>
+        <source>&amp;Show WifiAssist</source>
+        <translation type="vanished">显示</translation>
+    </message>
+    <message>
+        <source>&amp;Stop Wifi</source>
+        <translation type="vanished">停止 Wifi</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="194"/>
         <source>Apply WifiName Success!</source>
-        <translation type="unfinished"></translation>
+        <translation>修改Wifi名称成功！</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="227"/>
+        <location filename="../../src/mainwindow.cpp" line="233"/>
         <source>Password Should More Than 8 Characters!</source>
-        <translation type="unfinished"></translation>
+        <translation>密码至少需要8个字符！</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="234"/>
+        <location filename="../../src/mainwindow.cpp" line="240"/>
         <source>Apply Password Success!</source>
-        <translation type="unfinished"></translation>
+        <translation>修改密码成功！</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="258"/>
+        <location filename="../../src/mainwindow.cpp" line="264"/>
         <source>Access Point Can&apos;t Be Empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>接入点不能为空！</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="263"/>
-        <location filename="../../src/mainwindow.cpp" line="268"/>
-        <source>settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.cpp" line="263"/>
+        <location filename="../../src/mainwindow.cpp" line="269"/>
         <source>Wifi Interface Can&apos;t Be Empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>Wifi接口不能为空！</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="268"/>
+        <location filename="../../src/mainwindow.cpp" line="274"/>
         <source>Shared Interface Can&apos;t Be Empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>共享网卡不能为空！</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="275"/>
+        <location filename="../../src/mainwindow.cpp" line="281"/>
         <source>This Wifi Interface May not work,Still Use it?</source>
-        <translation type="unfinished"></translation>
+        <translation>该接口可能无法正常工作，仍要继续么？</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="283"/>
+        <location filename="../../src/mainwindow.cpp" line="289"/>
         <source>This Shared Interface May not work,Still Use it?</source>
-        <translation type="unfinished"></translation>
+        <translation>该共享网卡可能无法正常工作，仍要继续么？</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="304"/>
+        <location filename="../../src/mainwindow.cpp" line="300"/>
         <source>Apply Success!</source>
-        <translation type="unfinished">修改成功！</translation>
+        <translation>修改成功！</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="312"/>
+        <location filename="../../src/mainwindow.cpp" line="308"/>
         <source>Reset Success!</source>
-        <translation type="unfinished">重置成功！</translation>
+        <translation>重置成功！</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="329"/>
+        <location filename="../../src/mainwindow.cpp" line="325"/>
         <source>Minmize to SystemTray</source>
-        <translation type="unfinished">最小化到系统托盘</translation>
+        <translation>最小化到系统托盘</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="358"/>
+        <location filename="../../src/mainwindow.cpp" line="359"/>
         <source>English</source>
-        <translation type="unfinished">简体中文</translation>
+        <translation>简体中文</translation>
     </message>
 </context>
 <context>
@@ -393,19 +404,19 @@
         <location filename="../../src/wsettings.cpp" line="254"/>
         <location filename="../../src/wsettings.cpp" line="283"/>
         <source>Warning!</source>
-        <translation type="unfinished"></translation>
+        <translation>警告！</translation>
     </message>
     <message>
         <location filename="../../src/wsettings.cpp" line="145"/>
         <source>Can&apos;t Get Interface List</source>
-        <translation type="unfinished"></translation>
+        <translation>无法获取网络借口列表！</translation>
     </message>
     <message>
         <location filename="../../src/wsettings.cpp" line="227"/>
         <location filename="../../src/wsettings.cpp" line="254"/>
         <location filename="../../src/wsettings.cpp" line="283"/>
         <source>Can&apos;t find interface Record</source>
-        <translation type="unfinished"></translation>
+        <translation>找不到网络接口记录！</translation>
     </message>
 </context>
 </TS>

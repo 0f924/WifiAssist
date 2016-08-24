@@ -39,5 +39,6 @@ RESOURCES += \
     $$PWD/resources/i18n.qrc
 
 TRANSLATIONS += \
+	$$PWD/resources/i18n/en_US.ts \
     $$PWD/resources/i18n/zh_CN.ts \
     $$PWD/resources/i18n/zh_TW.ts \

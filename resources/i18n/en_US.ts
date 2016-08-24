@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<TS version="2.1" language="en">
 <context>
     <name>About</name>
     <message>
@@ -20,7 +20,7 @@
         <location filename="../../3rdParty/QSimpleUpdater/src/Downloader.ui" line="20"/>
         <location filename="../../3rdParty/QSimpleUpdater/src/Downloader.cpp" line="164"/>
         <source>Updater</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Updater</translation>
     </message>
     <message>
         <location filename="../../3rdParty/QSimpleUpdater/src/Downloader.ui" line="87"/>
@@ -161,34 +161,38 @@
         <location filename="../../src/mainwindow.ui" line="40"/>
         <location filename="../../src/mainwindow.cpp" line="325"/>
         <source>WifiAssist</source>
-        <translation type="unfinished"></translation>
+        <translation>WifiAssist</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="87"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show Connected Clients&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Show Connect Clients</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="119"/>
         <source>Wifi</source>
-        <translation type="unfinished"></translation>
+        <translation>Wifi</translation>
+    </message>
+    <message>
+        <source>START</source>
+        <translation type="vanished">START</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="182"/>
         <location filename="../../src/mainwindow.cpp" line="102"/>
         <source>WifiName</source>
-        <translation type="unfinished"></translation>
+        <translation>WifiName</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="279"/>
         <location filename="../../src/mainwindow.cpp" line="103"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Password</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="380"/>
         <source>Devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Devices</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="399"/>
@@ -201,60 +205,89 @@
         <location filename="../../src/mainwindow.cpp" line="300"/>
         <location filename="../../src/mainwindow.cpp" line="308"/>
         <source>Settings</source>
-        <translation type="unfinished">設置</translation>
+        <translation>Settings</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="425"/>
         <source>SAVE</source>
-        <translation type="unfinished"></translation>
+        <translation>SAVE</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="453"/>
         <source>RESET</source>
-        <translation type="unfinished"></translation>
+        <translation>RESET</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="486"/>
         <location filename="../../src/mainwindow.cpp" line="101"/>
         <source>AccessPoint</source>
-        <translation type="unfinished"></translation>
+        <translation>AccessPoint</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="544"/>
         <source>WifiInterface</source>
-        <translation type="unfinished"></translation>
+        <translation>WifiInterface</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="588"/>
         <location filename="../../src/mainwindow.ui" line="632"/>
         <location filename="../../src/mainwindow.cpp" line="104"/>
         <source>SharedInterface</source>
-        <translation type="unfinished"></translation>
+        <translation>SharedInterface</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="679"/>
         <source>Option</source>
-        <translation type="unfinished"></translation>
+        <translation>Option</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="688"/>
         <source>CheckUpdate</source>
-        <translation type="unfinished"></translation>
+        <translation>CheckUpdate</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="693"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>About</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="105"/>
         <source>APInterface</source>
-        <translation type="unfinished"></translation>
+        <translation>APInterface</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="106"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Language</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="151"/>
+        <source>Stop Wifi</source>
+        <translation>Stop Wifi</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="159"/>
+        <source>Start Wifi</source>
+        <translation>Start Wifi</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="69"/>
+        <source>Hide WifiAssist</source>
+        <translation>Hide WifiAssist</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="vanished">Quit</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="127"/>
+        <source>Restart Wifi</source>
+        <translation>Restart Wifi</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="71"/>
+        <source>Show WifiAssist</source>
+        <translation>Show WifiAssist</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="124"/>
@@ -272,89 +305,64 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="69"/>
-        <source>Hide WifiAssist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.cpp" line="71"/>
-        <source>Show WifiAssist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.cpp" line="127"/>
-        <source>Restart Wifi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.cpp" line="151"/>
-        <source>Stop Wifi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.cpp" line="159"/>
-        <source>Start Wifi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/mainwindow.cpp" line="194"/>
         <source>Apply WifiName Success!</source>
-        <translation type="unfinished"></translation>
+        <translation>Apply WifiName Success!</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="233"/>
         <source>Password Should More Than 8 Characters!</source>
-        <translation type="unfinished"></translation>
+        <translation>Password Should More Than 8 Characters!</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="240"/>
         <source>Apply Password Success!</source>
-        <translation type="unfinished"></translation>
+        <translation>Apply Password Success!</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="264"/>
         <source>Access Point Can&apos;t Be Empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>Access Point Can&apos;t Be Empty!</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="269"/>
         <source>Wifi Interface Can&apos;t Be Empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>Wifi Interface Can&apos;t Be Empty!</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="274"/>
         <source>Shared Interface Can&apos;t Be Empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>Shared Interface Can&apos;t Be Empty!</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="281"/>
         <source>This Wifi Interface May not work,Still Use it?</source>
-        <translation type="unfinished"></translation>
+        <translation>This Wifi Interface May not work,Still Use it?</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="289"/>
         <source>This Shared Interface May not work,Still Use it?</source>
-        <translation type="unfinished"></translation>
+        <translation>This Shared Interface May not work,Still Use it?</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="300"/>
         <source>Apply Success!</source>
-        <translation type="unfinished"></translation>
+        <translation>Apply Success!</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="308"/>
         <source>Reset Success!</source>
-        <translation type="unfinished"></translation>
+        <translation>Reset Success!</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="325"/>
         <source>Minmize to SystemTray</source>
-        <translation type="unfinished"></translation>
+        <translation>Minmize to SystemTray</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="359"/>
         <source>English</source>
-        <translation type="unfinished">台湾繁体</translation>
+        <translation>English</translation>
     </message>
 </context>
 <context>

@@ -35,6 +35,7 @@
   sudo apt-get -y install qt5-default qttools5-dev-tools
   git clone https://github.com/lzjqsdd/WifiAssist.git
   cd WifiAssist/build
+  qmake ../WifiAssist.pro
   make
   cd ../INSTALL
   sudo ./install.sh

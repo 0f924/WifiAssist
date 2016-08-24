@@ -13,29 +13,27 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     m_mutex(0),
     m_information_count(0),
+    m_wifi(new Wifi()),
+    m_wsettings(new WSettings()),
+    m_translator(new QTranslator(this)),
     m_trayIcon(new QSystemTrayIcon(this)),
-    m_restoreAction(new QAction(tr("&Hide WifiAssist"), this)),
-    m_quitAction(new QAction(tr("&Quit"), this)),
-    m_controlWifi(new QAction(tr("&Start Wifi"),this)),
-    m_restartWifi(new QAction(tr("&Restart Wifi"),this)),
+    m_restoreAction(new QAction(this)),
+    m_quitAction(new QAction(this)),
+    m_controlWifi(new QAction(this)),
+    m_restartWifi(new QAction(this)),
     m_trayIconMenu(new QMenu(this))
 {
+    setupLanguage();
     ui->setupUi(this);
-    ui->tabWidget->setCurrentIndex(0);
-    ui->tabWidget->removeTab(1);
 
     initUIValue();
-    initUILanguageShow();
-
     setupTrayIcon();
     setupSignalsSlots();
-
-    findQmFiles();
 }
 
 MainWindow::~MainWindow()
 {
-    wifi.stopWifi();
+    m_wifi->stopWifi();
     delete ui;
 }
 
@@ -53,7 +51,7 @@ void MainWindow::setupSignalsSlots()
     connect(m_controlWifi,&QAction::triggered,this,&MainWindow::on_pushButton_clicked);
     connect(m_restartWifi,&QAction::triggered,this,[this](){
         ui->pushButton->setText("Restaring...");
-        wifi.restartWifi();
+        m_wifi->restartWifi();
         ui->pushButton->setText("STOP");
     });
 }
@@ -68,9 +66,9 @@ void MainWindow::setMainWindowVisibility(bool state)
         qApp->processEvents();
         qApp->setActiveWindow(this);
         qApp->processEvents();
-        m_restoreAction->setText(tr("&Hide WifiAssist"));
+        m_restoreAction->setText(tr("Hide WifiAssist"));
     }else{
-        m_restoreAction->setText(tr("&Show WifiAssist"));
+        m_restoreAction->setText(tr("Show WifiAssist"));
         hide();
     }
 }
@@ -78,33 +76,30 @@ void MainWindow::setMainWindowVisibility(bool state)
 
 void MainWindow::initUIValue()
 {
-    ui->lineEdit_name->setText(m_wsettings.APName());
-    ui->lineEdit_pwd ->setText(m_wsettings.Password());
-    ui->lineEdit_ap->setText(m_wsettings.AccessPoint());
+    ui->tabWidget->setCurrentIndex(0);
+    ui->tabWidget->removeTab(1);
+
+    ui->pushButton->setText("START");
+
+    ui->lineEdit_name->setText(m_wsettings->APName());
+    ui->lineEdit_pwd ->setText(m_wsettings->Password());
+    ui->lineEdit_ap->setText(m_wsettings->AccessPoint());
 
 
     //get interface list
-    QStringList interface_list = m_wsettings.getInterfaceList();
+    QStringList interface_list = m_wsettings->getInterfaceList();
 
     ui->comboBox_createdinterface->clear();
     ui->comboBox_createdinterface->addItems(interface_list);
-    ui->comboBox_createdinterface->setCurrentText(m_wsettings.Interface_Create());
-
+    ui->comboBox_createdinterface->setCurrentText(m_wsettings->Interface_Create());
     ui->comboBox_shareinterface->clear();
     ui->comboBox_shareinterface->addItems(interface_list);
-    ui->comboBox_shareinterface->setCurrentText(m_wsettings.Interface_Shared());
-
-    //QStringList language_list  = QStringList() << "English" << "简体中文";
-    //ui->comboBox_language->clear();
-    //ui->comboBox_language->addItems(language_list);
+    ui->comboBox_shareinterface->setCurrentText(m_wsettings->Interface_Shared());
 
     setupLanguageOption();
     ui->label_tip->setHidden(true);
 
-}
-
-void MainWindow::initUILanguageShow()
-{
+    //init ui text
     ui->label_ap->setText(tr("AccessPoint"));
     ui->label_name->setText(tr("WifiName"));
     ui->label_pwd->setText(tr("Password"));
@@ -114,12 +109,25 @@ void MainWindow::initUILanguageShow()
     ui->comboBox_language->setCurrentIndex(0);
 }
 
+void MainWindow::setupLanguage()
+{
+    QString languageFile = QString(":/i18n/").append(m_wsettings->Language()).append(".qm");
+    m_translator->load(languageFile);
+    qApp->installTranslator(m_translator);
+}
+
 void MainWindow::setupTrayIcon()
 {
     //Check if System Support SystemTrayIcon.
     //Linux:X11
     if(QSystemTrayIcon::isSystemTrayAvailable())
     {
+
+        m_restoreAction->setText(tr("&Hide WifiAssist"));
+        m_quitAction->setText(tr("&Quit"));
+        m_controlWifi->setText(tr("&Start Wifi"));
+        m_restartWifi->setText(tr("Restart Wifi"));
+
         m_trayIconMenu->addAction(m_restoreAction);
         m_trayIconMenu->addSeparator();
         m_trayIconMenu->addAction(m_controlWifi);
@@ -139,7 +147,7 @@ void MainWindow::on_pushButton_clicked()
     QString text = ui->pushButton->text();
     if(QString::compare(text,"START") == 0)
     {
-        if(wifi.startWifi())
+        if(m_wifi->startWifi())
         {
             ui->pushButton->setText("STOP");
             m_controlWifi->setText(tr("Stop Wifi"));
@@ -147,7 +155,7 @@ void MainWindow::on_pushButton_clicked()
     }
     else if(QString::compare(text,"STOP") == 0)
     {
-        if(wifi.stopWifi())
+        if(m_wifi->stopWifi())
         {
             ui->pushButton->setText("START");
             m_controlWifi->setText(tr("Start Wifi"));
@@ -177,11 +185,11 @@ void MainWindow::on_lineEdit_name_editingFinished()
         m_mutex = 0;
         ui->lineEdit_name->setEnabled(false);
         //if config not changed,return
-        if(ui->lineEdit_name->text() == m_wsettings.APName())
+        if(ui->lineEdit_name->text() == m_wsettings->APName())
             return;
 
         ui->lineEdit_name->setEnabled(false);
-        m_wsettings.setAPName(ui->lineEdit_name->text());
+        m_wsettings->setAPName(ui->lineEdit_name->text());
 
         //add apply tips
         ui->label_tip->setHidden(false);
@@ -197,7 +205,7 @@ void MainWindow::on_lineEdit_name_editingFinished()
         if(QString::compare(ui->pushButton->text(),"STOP") == 0)
         {
             ui->pushButton->setText("Restaring...");
-            wifi.restartWifi();
+            m_wifi->restartWifi();
             ui->pushButton->setText("STOP");
         }
     }
@@ -221,13 +229,13 @@ void MainWindow::on_lineEdit_pwd_editingFinished()
     {
         m_mutex = 0;
         ui->lineEdit_pwd->setEnabled(false);
-        if(ui->lineEdit_pwd->text() == m_wsettings.Password())
+        if(ui->lineEdit_pwd->text() == m_wsettings->Password())
             return;
         if(ui->lineEdit_pwd->text().size() < 8)
             QMessageBox::information(this,tr("Settings"),tr("Password Should More Than 8 Characters!"),QMessageBox::Warning);
 
         ui->lineEdit_pwd->setEnabled(false);
-        m_wsettings.setPassword(ui->lineEdit_pwd->text());
+        m_wsettings->setPassword(ui->lineEdit_pwd->text());
 
         //add apply tips
         ui->label_tip->setHidden(false);
@@ -242,7 +250,7 @@ void MainWindow::on_lineEdit_pwd_editingFinished()
         if(QString::compare(ui->pushButton->text(),"STOP") == 0)
         {
             ui->pushButton->setText("Restaring...");
-            wifi.restartWifi();
+            m_wifi->restartWifi();
             ui->pushButton->setText("STOP");
         }
     }
@@ -260,12 +268,12 @@ void MainWindow::on_pushButton_save_clicked()
     }
     if(interface_created.size() == 0)
     {
-        QMessageBox::information(this,tr("settings"),tr("Wifi Interface Can't Be Empty!"),QMessageBox::Ok);
+        QMessageBox::information(this,tr("Settings"),tr("Wifi Interface Can't Be Empty!"),QMessageBox::Ok);
         return;
     }
     if(interface_shared.size() == 0)
     {
-        QMessageBox::information(this,tr("settings"),tr("Shared Interface Can't Be Empty!"),QMessageBox::Ok);
+        QMessageBox::information(this,tr("Settings"),tr("Shared Interface Can't Be Empty!"),QMessageBox::Ok);
         return;
     }
 
@@ -286,20 +294,10 @@ void MainWindow::on_pushButton_save_clicked()
             return;
     }
 
-    m_wsettings.setAccessPoint(apoint);
-    m_wsettings.setInterface_Create(interface_created);
-    m_wsettings.setInterface_Shared(interface_shared);
-
-    //save language config
-    switch (ui->comboBox_language->currentIndex())
-    {
-    case 0:
-        m_wsettings.setLanguage("en_US");break;
-    case 1:
-        m_wsettings.setLanguage("zh_CN");break;
-    default:
-        break;
-    }
+    m_wsettings->setAccessPoint(apoint);
+    m_wsettings->setInterface_Create(interface_created);
+    m_wsettings->setInterface_Shared(interface_shared);
+    m_wsettings->setLanguage(m_languageList[ui->comboBox_language->currentIndex()]);
 
     QMessageBox::information(this,tr("Settings"),tr("Apply Success!"),QMessageBox::Ok);
 
@@ -307,7 +305,7 @@ void MainWindow::on_pushButton_save_clicked()
 
 void MainWindow::on_pushButton_reset_clicked()
 {
-    m_wsettings.setDefaultConfig();
+    m_wsettings->setDefaultConfig();
     this->initUIValue();
     QMessageBox::information(this,tr("Settings"),tr("Reset Success!"),QMessageBox::Ok);
 }
@@ -344,9 +342,14 @@ QStringList MainWindow::findQmFiles()
     QStringList fileNames = dir.entryList(QStringList("*.qm"), QDir::Files,
                                           QDir::Name);
     QMutableStringListIterator i(fileNames);
+    m_languageList.clear();
     while (i.hasNext()) {
         i.next();
         i.setValue(dir.filePath(i.value()));
+        QString s = i.value();
+        s.remove(0,7);
+        s.remove(s.length()-3,3);
+        m_languageList.push_back(s);
     }
     return fileNames;
 }
