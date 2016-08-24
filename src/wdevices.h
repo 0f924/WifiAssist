@@ -3,23 +3,19 @@
 #include <QStringList>
 #include <QProcess>
 #include <QMessageBox>
+#include <QVector>
+#include <QStringList>
+
+#include "device.h"
 
 class WDevices
 {
 public:
     WDevices();
-    WDevices(QString ip,QString mac,QString hostname);
-    QString ip() const;
-
-    QString mac() const;
-
-    QString hostname() const;
+    QVector<Device *> getDeviceList();
 
 private:
-    QString _ip;
-    QString _mac;
-    QString _hostname;
-
+    QStringList getDeviceListStr();
 };
 
 #endif // WDEVICES_H

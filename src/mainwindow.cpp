@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <src/wsettings.h>
 #include <QCoreApplication>
+#include <QVector>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_information_count(0),
     m_wifi(new Wifi()),
     m_wsettings(new WSettings()),
+    m_wdevices(new WDevices()),
+    m_wthread(new WThread()),
     m_translator(new QTranslator(this)),
     m_trayIcon(new QSystemTrayIcon(this)),
     m_restoreAction(new QAction(this)),
@@ -54,6 +57,8 @@ void MainWindow::setupSignalsSlots()
         m_wifi->restartWifi();
         ui->pushButton->setText("STOP");
     });
+
+    connect(m_wthread,SIGNAL(clientChanged(QVector<Device *>)),this,SLOT(updateClients(QVector<Device*>)),Qt::DirectConnection);
 }
 
 void MainWindow::setMainWindowVisibility(bool state)
@@ -151,6 +156,7 @@ void MainWindow::on_pushButton_clicked()
         {
             ui->pushButton->setText("STOP");
             m_controlWifi->setText(tr("Stop Wifi"));
+            m_wthread->start();
         }
     }
     else if(QString::compare(text,"STOP") == 0)
@@ -159,6 +165,7 @@ void MainWindow::on_pushButton_clicked()
         {
             ui->pushButton->setText("START");
             m_controlWifi->setText(tr("Start Wifi"));
+            m_wthread->stop();
         }
     }
     else
@@ -371,8 +378,8 @@ void MainWindow::setupLanguageOption()
     }
 }
 
-void MainWindow::updateClients(QStringList clients)
+void MainWindow::updateClients(QVector<Device *> device)
 {
-    for(int i=0;i<clients.size();i++)
-        cout<<"clients:"<<clients.at(i).toStdString()<<endl;
+    for(int i=0;i<device.size();i++)
+        m_trayIcon->showMessage(tr("WifiAssist"),device[i]->hostname(),QSystemTrayIcon::Information,1000);
 }

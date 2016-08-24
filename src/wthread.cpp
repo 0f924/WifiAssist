@@ -1,22 +1,27 @@
 #include "wthread.h"
 
-WThread::WThread()
+WThread::WThread():
+    m_wdevices(new WDevices()),
+    m_stop(false)
 {
-    _settings = new WSettings(false);
 }
 
 WThread::~WThread()
 {
-   delete this->_settings;
    this->~QThread();
 }
 
 void WThread::run()
 {
-    //keep refresh ap status and client list;
-    if(_settings!=NULL && _settings->getAPStatus())
+    while(!m_stop)
     {
-        emit updateUI(_settings->getClientList());
+        emit clientChanged(m_wdevices->getDeviceList());
+        sleep(5);
     }
+    m_stop = false;
 }
 
+void WThread::stop()
+{
+    m_stop = true;
+}

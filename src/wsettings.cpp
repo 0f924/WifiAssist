@@ -13,7 +13,7 @@ WSettings::WSettings():
 
 WSettings::WSettings(bool needinit)
 {
-    if(needinit)
+    if(!needinit)
         WSettings();
 }
 
@@ -256,31 +256,4 @@ bool WSettings::getAPStatus()
     if(ap_list.size() > 0)
         return true;
     return false;
-}
-
-QStringList WSettings::getClientList()
-{
-    //read ap.pid
-    QDir dir;
-    QString config_path = dir.homePath()+"/.WifiAssist";
-    QString client_list_filename = config_path+"/client.list";
-
-    QStringList client_list = QStringList();
-
-    QFile inputFile(client_list_filename);
-    if(inputFile.open(QIODevice::ReadOnly))
-    {
-       QTextStream in(&inputFile);
-       while (!in.atEnd())
-       {
-          QString line = in.readLine();
-          client_list << line;
-       }
-       inputFile.close();
-    }
-    else
-    {
-        QMessageBox::warning(NULL,QT_TR_NOOP("Warning!"),QT_TR_NOOP("Can't find interface Record"));
-    }
-    return client_list;
 }
