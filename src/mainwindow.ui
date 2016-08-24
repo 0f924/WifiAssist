@@ -44,7 +44,7 @@
     <normaloff>:/img/WifiAssist.ico</normaloff>:/img/WifiAssist.ico</iconset>
   </property>
   <property name="autoFillBackground">
-   <bool>true</bool>
+   <bool>false</bool>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -102,7 +102,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab_main">
      <property name="minimumSize">
@@ -142,7 +142,7 @@ border-width:2px
 </string>
       </property>
       <property name="text">
-       <string>START</string>
+       <string/>
       </property>
      </widget>
      <widget class="QWidget" name="layoutWidget">

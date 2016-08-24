@@ -8,6 +8,8 @@
 #include <QMutex>
 #include <QAction>
 #include <QCloseEvent>
+#include <QStringList>
+#include <QTranslator>
 
 #include <iostream>
 
@@ -51,11 +53,13 @@ private:
     int m_mutex;
     int m_information_count;
 
-    Wifi wifi;
-    WSettings m_wsettings;
+    Wifi *m_wifi;
+    WSettings *m_wsettings;
     //WThread *_thread;
 
-    QString path;
+    QTranslator *m_translator;
+    QStringList m_languageList;
+    //QString path;
     QSystemTrayIcon* m_trayIcon;
     QAction* m_restoreAction;
     QAction* m_quitAction;
@@ -64,10 +68,13 @@ private:
     QMenu* m_trayIconMenu;
 
     void createSystemTrayMenu(); //create customize menu
-    void initUILanguageShow();
+    void setupLanguage();
     void initUIValue();
     void setupTrayIcon();
     void setupSignalsSlots();
+    QStringList findQmFiles();
+    void setupLanguageOption();
+    QString languageName(const QString &qmFile);
 };
 
 #endif // MAINWINDOW_H

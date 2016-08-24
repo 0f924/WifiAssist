@@ -1,9 +1,12 @@
 #include "mainwindow.h"
 #include "singleinstance.h"
 #include "QSimpleUpdater.h"
+#include "wsettings.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QTranslator>
+#include <QLocale>
 
 const QString UPDATES_URL = "https://raw.githubusercontent.com/lzjqsdd/WifiAssist/master/etc/UPDATES.json";
 
@@ -11,6 +14,13 @@ int main(int argc, char *argv[])
 {
     QApplication::setDesktopSettingsAware(false);
     QApplication app(argc, argv);
+
+
+    //QTranslator *m_translator = new QTranslator();
+    //WSettings *m_wsettings = new WSettings();
+    //QString languageFile = QString(":/i18n/").append(m_wsettings->Language()).append(".qm");
+    //m_translator->load(languageFile);
+    //app.installTranslator(m_translator);
 
 	//set application information
 	app.setApplicationName("WifiAssist");

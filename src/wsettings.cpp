@@ -1,6 +1,7 @@
 #include "wsettings.h"
 #include <QProcess>
 #include <QTextStream>
+#include <QString>
 
 WSettings::WSettings():
     m_settings(new QSettings)
@@ -141,7 +142,7 @@ void WSettings::checkInterfaceListFile()
         QProcess qp;
         if(!qp.startDetached("bash",args))
         {
-            QMessageBox::about(NULL,"Warning!","Can't Get Interface List");
+            QMessageBox::about(NULL,QT_TR_NOOP("Warning!"),QT_TR_NOOP("Can't Get Interface List"));
         }
 
         QElapsedTimer t;
@@ -223,7 +224,7 @@ QStringList WSettings::getInterfaceList()
     }
     else
     {
-        QMessageBox::warning(NULL,"Warning","Can't find interface Record");
+        QMessageBox::warning(NULL,QT_TR_NOOP("Warning!"),QT_TR_NOOP("Can't find interface Record"));
     }
     return interface_list;
 }
@@ -250,7 +251,7 @@ bool WSettings::getAPStatus()
     }
     else
     {
-        QMessageBox::warning(NULL,"Warning","Can't find interface Record");
+        QMessageBox::warning(NULL,QT_TR_NOOP("Warning!"),QT_TR_NOOP("Can't find interface Record"));
     }
     if(ap_list.size() > 0)
         return true;
@@ -279,7 +280,7 @@ QStringList WSettings::getClientList()
     }
     else
     {
-        QMessageBox::warning(NULL,"Warning","Can't find interface Record");
+        QMessageBox::warning(NULL,QT_TR_NOOP("Warning!"),QT_TR_NOOP("Can't find interface Record"));
     }
     return client_list;
 }
