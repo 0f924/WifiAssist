@@ -1,17 +1,27 @@
 #ifndef WTHREAD_H
 #define WTHREAD_H
 #include <QThread>
-#include "wsettings.h"
+#include <QVector>
+
+#include "device.h"
+#include "wdevices.h"
 
 class WThread : public QThread
 {
+    Q_OBJECT
+
 public:
     WThread();
     ~WThread();
+    void stop();
+
 private:
-    WSettings *_settings;
+    WDevices *m_wdevices;
+    bool m_stop;
+
 signals:
-    void updateUI(QStringList);
+    void clientAdd(QVector<Device *> devices);
+    void clientLeave(QVector<Device *> devices);
 protected:
     void run();
 };

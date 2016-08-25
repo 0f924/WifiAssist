@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <src/wsettings.h>
 #include <QCoreApplication>
+#include <QVector>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_information_count(0),
     m_wifi(new Wifi()),
     m_wsettings(new WSettings()),
+    m_wdevices(new WDevices()),
+    m_wthread(new WThread()),
     m_translator(new QTranslator(this)),
     m_trayIcon(new QSystemTrayIcon(this)),
     m_restoreAction(new QAction(this)),
@@ -42,6 +45,8 @@ void MainWindow::setupSignalsSlots()
     //signal-slot:
     //connect(_thread,SIGNAL(updateUI(QStringList)),this,SLOT(updateClients(QStringList)),Qt::QueuedConnection);
 
+    qRegisterMetaType<QVector<Device*> >("QVector<Device*>");
+
     connect(m_restoreAction, &QAction::triggered, this, [this](){
         setMainWindowVisibility(isHidden()
                                 || windowState() == Qt::WindowMinimized
@@ -54,6 +59,9 @@ void MainWindow::setupSignalsSlots()
         m_wifi->restartWifi();
         ui->pushButton->setText("STOP");
     });
+
+    connect(m_wthread,SIGNAL(clientAdd(QVector<Device *>)),this,SLOT(updateNewClients(QVector<Device*>)),Qt::QueuedConnection);
+    connect(m_wthread,SIGNAL(clientLeave(QVector<Device *>)),this,SLOT(updateLeaveClients(QVector<Device*>)),Qt::QueuedConnection);
 }
 
 void MainWindow::setMainWindowVisibility(bool state)
@@ -151,6 +159,7 @@ void MainWindow::on_pushButton_clicked()
         {
             ui->pushButton->setText("STOP");
             m_controlWifi->setText(tr("Stop Wifi"));
+            m_wthread->start();
         }
     }
     else if(QString::compare(text,"STOP") == 0)
@@ -159,6 +168,7 @@ void MainWindow::on_pushButton_clicked()
         {
             ui->pushButton->setText("START");
             m_controlWifi->setText(tr("Start Wifi"));
+            m_wthread->stop();
         }
     }
     else
@@ -371,8 +381,20 @@ void MainWindow::setupLanguageOption()
     }
 }
 
-void MainWindow::updateClients(QStringList clients)
+void MainWindow::updateNewClients(QVector<Device *> device)
 {
-    for(int i=0;i<clients.size();i++)
-        cout<<"clients:"<<clients.at(i).toStdString()<<endl;
+    QString hostname;
+    for(int i=0;i<device.size();i++)
+        hostname= hostname+device[i]->hostname()+"\n";
+
+    m_trayIcon->showMessage(tr("WifiAssist"),hostname+tr("Connected To Your AP"),QSystemTrayIcon::Information,1000);
+}
+
+void MainWindow::updateLeaveClients(QVector<Device *> device)
+{
+    QString hostname;
+    for(int i=0;i<device.size();i++)
+        hostname= hostname+device[i]->hostname()+"\n";
+
+    m_trayIcon->showMessage(tr("WifiAssist"),hostname+tr("Left Your AP"),QSystemTrayIcon::Information,1000);
 }

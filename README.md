@@ -13,12 +13,13 @@
 - [x] 桌面图标启动
 - [x] 自动获取系统网卡列表
 - [x] 增加名称密码修改后提示
-- [ ] 自动更新
 - [x] 应用为单进程
 - [x] 问题报告及关于
 - [x] 系统托盘控制
-- [ ] 增加接入设备显示(version2.0加入)
+- [x] 增加接入设备气泡提示
+- [x] 接入设备列表页
 - [ ] 接入设备限速控制、踢人
+- [ ] 自动更新
 
 ## Install
 
@@ -51,7 +52,9 @@
   ```
   （建议卸载按照install.sh中的命令对应着逐个删除。）
 ## Snapshot
-![WifiAssit_init](https://github.com/lzjqsdd/WifiAssist/blob/master/resources/img/WifiAssistForLinux.png)
+![WifiAssit_init1](https://github.com/lzjqsdd/WifiAssist/blob/master/screenshot/WifiAssistForLinux-Main.png)
+![WifiAssit_init2](https://github.com/lzjqsdd/WifiAssist/blob/master/screenshot/WifiAssistForLinux-Settings.png)
+![WifiAssit_init2](https://github.com/lzjqsdd/WifiAssist/blob/master/screenshot/ClientNotify.png)
 
 ## Thanks
   create_ap project:https://github.com/oblique/create_ap

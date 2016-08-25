@@ -20,7 +20,9 @@ SOURCES += $$PWD/src/main.cpp\
     $$PWD/src/wsettings.cpp \
     $$PWD/src/wdevices.cpp \
     $$PWD/src/about.cpp \
-    $$PWD/src/singleinstance.cpp
+    $$PWD/src/singleinstance.cpp \
+    $$PWD/src/device.cpp \
+    $$PWD/src/wthread.cpp \
 
 HEADERS  += src/mainwindow.h \
     $$PWD/src/wifi.h \
@@ -28,6 +30,8 @@ HEADERS  += src/mainwindow.h \
     $$PWD/src/wdevices.h \
     $$PWD/src/about.h \
     $$PWD/src/singleinstance.h \
+    $$PWD/src/device.h \
+    $$PWD/src/wthread.h \
 
 FORMS    += $$PWD/src/mainwindow.ui \
     $$PWD/src/about.ui

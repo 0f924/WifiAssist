@@ -14,6 +14,7 @@
 #include <iostream>
 
 #include "wifi.h"
+#include "device.h"
 #include "wdevices.h"
 #include "wsettings.h"
 #include "about.h"
@@ -45,7 +46,8 @@ private slots:
     void on_pushButton_save_clicked();
     void on_pushButton_reset_clicked();
     void on_actionAbout_triggered();
-    void updateClients(QStringList);
+    void updateNewClients(QVector<Device *> device);
+    void updateLeaveClients(QVector<Device *> device);
 
 private:
     Ui::MainWindow *ui;
@@ -55,11 +57,11 @@ private:
 
     Wifi *m_wifi;
     WSettings *m_wsettings;
-    //WThread *_thread;
+    WDevices *m_wdevices;
+    WThread *m_wthread;
 
     QTranslator *m_translator;
     QStringList m_languageList;
-    //QString path;
     QSystemTrayIcon* m_trayIcon;
     QAction* m_restoreAction;
     QAction* m_quitAction;
