@@ -16,8 +16,8 @@ void WThread::run()
 {
     while(!m_stop)
     {
-        sleep(15);
-        std::cout<<"running..."<<std::endl;
+        sleep(3);
+        //std::cout<<"running..."<<std::endl;
 
         m_wdevices->updateClients();
         QVector<Device *> new_devices = m_wdevices->getNewDeviceList();

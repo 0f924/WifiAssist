@@ -56,6 +56,7 @@ QVector<Device *> WDevices::getDeviceList(QStringList devicesListStr) const
     {
         QString deviceStr = devicesListStr[i];
         QStringList deviceInfo = deviceStr.split(QRegExp("\\s+"));
+        if(deviceInfo[2] == "*") continue;
         Device *device = new Device(deviceInfo[0],deviceInfo[1],deviceInfo[2]);
         deviceList.push_back(device);
     }
