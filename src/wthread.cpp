@@ -1,4 +1,5 @@
 #include "wthread.h"
+#include <iostream>
 
 WThread::WThread():
     m_wdevices(new WDevices()),
@@ -15,8 +16,17 @@ void WThread::run()
 {
     while(!m_stop)
     {
-        emit clientChanged(m_wdevices->getDeviceList());
-        sleep(5);
+        sleep(15);
+        std::cout<<"running..."<<std::endl;
+
+        m_wdevices->updateClients();
+        QVector<Device *> new_devices = m_wdevices->getNewDeviceList();
+        QVector<Device *> leave_devices = m_wdevices->getLeaveDeviceList();
+
+        if(new_devices.size() > 0)
+            emit clientAdd(new_devices);
+        if(leave_devices.size() > 0)
+            emit clientLeave(leave_devices);
     }
     m_stop = false;
 }

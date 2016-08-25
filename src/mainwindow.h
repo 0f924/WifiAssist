@@ -46,7 +46,8 @@ private slots:
     void on_pushButton_save_clicked();
     void on_pushButton_reset_clicked();
     void on_actionAbout_triggered();
-    void updateClients(QVector<Device *> device);
+    void updateNewClients(QVector<Device *> device);
+    void updateLeaveClients(QVector<Device *> device);
 
 private:
     Ui::MainWindow *ui;

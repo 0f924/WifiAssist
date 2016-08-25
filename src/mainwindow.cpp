@@ -45,6 +45,8 @@ void MainWindow::setupSignalsSlots()
     //signal-slot:
     //connect(_thread,SIGNAL(updateUI(QStringList)),this,SLOT(updateClients(QStringList)),Qt::QueuedConnection);
 
+    qRegisterMetaType<QVector<Device*> >("QVector<Device*>");
+
     connect(m_restoreAction, &QAction::triggered, this, [this](){
         setMainWindowVisibility(isHidden()
                                 || windowState() == Qt::WindowMinimized
@@ -58,7 +60,8 @@ void MainWindow::setupSignalsSlots()
         ui->pushButton->setText("STOP");
     });
 
-    connect(m_wthread,SIGNAL(clientChanged(QVector<Device *>)),this,SLOT(updateClients(QVector<Device*>)),Qt::DirectConnection);
+    connect(m_wthread,SIGNAL(clientAdd(QVector<Device *>)),this,SLOT(updateNewClients(QVector<Device*>)),Qt::QueuedConnection);
+    connect(m_wthread,SIGNAL(clientLeave(QVector<Device *>)),this,SLOT(updateLeaveClients(QVector<Device*>)),Qt::QueuedConnection);
 }
 
 void MainWindow::setMainWindowVisibility(bool state)
@@ -378,8 +381,20 @@ void MainWindow::setupLanguageOption()
     }
 }
 
-void MainWindow::updateClients(QVector<Device *> device)
+void MainWindow::updateNewClients(QVector<Device *> device)
 {
+    QString hostname;
     for(int i=0;i<device.size();i++)
-        m_trayIcon->showMessage(tr("WifiAssist"),device[i]->hostname(),QSystemTrayIcon::Information,1000);
+        hostname= hostname+device[i]->hostname()+"\n";
+
+    m_trayIcon->showMessage(tr("WifiAssist"),hostname+tr("Connected To Your AP"),QSystemTrayIcon::Information,1000);
+}
+
+void MainWindow::updateLeaveClients(QVector<Device *> device)
+{
+    QString hostname;
+    for(int i=0;i<device.size();i++)
+        hostname= hostname+device[i]->hostname()+"\n";
+
+    m_trayIcon->showMessage(tr("WifiAssist"),hostname+tr("Left Your AP"),QSystemTrayIcon::Information,1000);
 }

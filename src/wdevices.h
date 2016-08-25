@@ -12,10 +12,21 @@ class WDevices
 {
 public:
     WDevices();
-    QVector<Device *> getDeviceList();
+    QVector<Device *> getDeviceList(QStringList devicesListStr) const;
+    void updateClients();
+
+    QVector<Device *> getNewDeviceList() const;
+    QVector<Device *> getLeaveDeviceList() const;
 
 private:
+    QStringList m_oldClientsStr;
+    //QVector<Device *> m_oldClients;
+    QStringList m_newDeviceListStr;
+    QVector<Device *> m_newDeviceList;
+    QStringList m_leaveDeviceListStr;
+    QVector<Device *> m_leaveDeviceList;
     QStringList getDeviceListStr();
+
 };
 
 #endif // WDEVICES_H

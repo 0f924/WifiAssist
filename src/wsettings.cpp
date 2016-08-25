@@ -2,6 +2,7 @@
 #include <QProcess>
 #include <QTextStream>
 #include <QString>
+#include <iostream>
 
 WSettings::WSettings():
     m_settings(new QSettings)
@@ -177,6 +178,9 @@ void WSettings::checkConfigFile()
     }
     else
         m_settings = new QSettings(filename,QSettings::IniFormat);
+
+    QString clientfile = config_path+"/client.list";
+    QFile::remove(clientfile);
 }
 
 void WSettings::setDefaultConfig()

@@ -20,8 +20,8 @@ private:
     bool m_stop;
 
 signals:
-    void clientChanged(QVector<Device *> devices);
-
+    void clientAdd(QVector<Device *> devices);
+    void clientLeave(QVector<Device *> devices);
 protected:
     void run();
 };
