@@ -22,8 +22,7 @@ WListWidgetItem::WListWidgetItem(QWidget *parent,const QString &hostname, const 
 
     //ui->label_logo->setPixmap(QPixmap(":cor/img/corpicon/XiaomiCo.ico").scaled(40,40));
 
-    QPixmap original = QPixmap(QString(":cor/img/corpicon/XiaomiCo.ico")).scaled(40,40);
-
+    QPixmap original = QPixmap(QString("/home/lzjqsdd/github/WifiAssist/resources/img/corpicon/Apple.ico"),"ico").scaled(40,40);
     // Draw the mask.
     QBitmap  mask(original.size());
     QPainter painter(&mask);

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/cor">
         <file>img/corpicon/XiaomiCo.ico</file>
+        <file>img/corpicon/Apple.ico</file>
     </qresource>
 </RCC>

@@ -417,7 +417,7 @@ void MainWindow::setupDevicesForTest()
         WListWidgetItem *wListWidgetItem = new WListWidgetItem(this,QString("xiaomi"),QString("11:21:33:33:34:44"));
         QListWidgetItem *listItem  = new QListWidgetItem();
         listItem->setSizeHint(QSize(0,51));
-        listItem->setBackgroundColor(QColor(0,0,0));
+        listItem->setBackgroundColor(QColor(255,255,255));
         ui->listWidget->addItem(listItem);
         ui->listWidget->setItemWidget(listItem,wListWidgetItem);
     }
