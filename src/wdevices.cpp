@@ -98,3 +98,8 @@ QVector<Device *> WDevices::getLeaveDeviceList() const
 {
     return getDeviceList(m_leaveDeviceListStr);
 }
+
+QVector<Device *> WDevices::getUpdateDeviceList() const
+{
+    return getDeviceList(m_oldClientsStr);
+}

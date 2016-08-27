@@ -17,10 +17,11 @@ public:
 
     QVector<Device *> getNewDeviceList() const;
     QVector<Device *> getLeaveDeviceList() const;
+    QVector<Device *> getUpdateDeviceList() const;
 
 private:
     QStringList m_oldClientsStr;
-    //QVector<Device *> m_oldClients;
+    QVector<Device *> m_oldClients;
     QStringList m_newDeviceListStr;
     QVector<Device *> m_newDeviceList;
     QStringList m_leaveDeviceListStr;

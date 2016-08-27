@@ -10,6 +10,7 @@
 #include <QCloseEvent>
 #include <QStringList>
 #include <QTranslator>
+#include <QIcon>
 
 #include <iostream>
 
@@ -19,6 +20,7 @@
 #include "wsettings.h"
 #include "about.h"
 #include "wthread.h"
+#include "wlistwidgetitem.h"
 
 using namespace std;
 namespace Ui {
@@ -48,6 +50,7 @@ private slots:
     void on_actionAbout_triggered();
     void updateNewClients(QVector<Device *> device);
     void updateLeaveClients(QVector<Device *> device);
+    void updateDevicesList(QVector<Device *> device);
 
 private:
     Ui::MainWindow *ui;
@@ -77,6 +80,7 @@ private:
     QStringList findQmFiles();
     void setupLanguageOption();
     QString languageName(const QString &qmFile);
+    void setupDevicesForTest();
 };
 
 #endif // MAINWINDOW_H

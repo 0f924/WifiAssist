@@ -23,6 +23,7 @@ SOURCES += $$PWD/src/main.cpp\
     $$PWD/src/singleinstance.cpp \
     $$PWD/src/device.cpp \
     $$PWD/src/wthread.cpp \
+    $$PWD/src/wlistwidgetitem.cpp \
 
 HEADERS  += src/mainwindow.h \
     $$PWD/src/wifi.h \
@@ -32,9 +33,11 @@ HEADERS  += src/mainwindow.h \
     $$PWD/src/singleinstance.h \
     $$PWD/src/device.h \
     $$PWD/src/wthread.h \
+    $$PWD/src/wlistwidgetitem.h \
 
 FORMS    += $$PWD/src/mainwindow.ui \
-    $$PWD/src/about.ui
+    $$PWD/src/about.ui \
+    $$PWD/src/wlistwidgetitem.ui
 
 DISTFILES +=
 
@@ -43,6 +46,6 @@ RESOURCES += \
     $$PWD/resources/i18n.qrc
 
 TRANSLATIONS += \
-	$$PWD/resources/i18n/en_US.ts \
+    $$PWD/resources/i18n/en_US.ts \
     $$PWD/resources/i18n/zh_CN.ts \
     $$PWD/resources/i18n/zh_TW.ts \

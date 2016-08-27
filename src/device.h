@@ -23,6 +23,7 @@ private:
     QString _hostname;
     QString _limitSpeed;
     QString _logo;
+
 };
 
 #endif // DEVICE_H
