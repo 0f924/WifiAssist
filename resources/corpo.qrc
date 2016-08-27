@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/cor">
+        <file>img/corpicon/XiaomiCo.ico</file>
+    </qresource>
+</RCC>

@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setupTrayIcon();
     setupSignalsSlots();
 
-    //setupDevicesForTest();
+    setupDevicesForTest();
 }
 
 MainWindow::~MainWindow()
@@ -412,16 +412,22 @@ void MainWindow::setupDevicesForTest()
    // ui->listWidget->addItem(listItem1);
    // ui->listWidget->setItemWidget(listItem1,form);
 
-    WListWidgetItem *wListWidgetItem = new WListWidgetItem(this,QString("xiaomi"),QString("11:21:33:33:34:44"));
-    QListWidgetItem *listItem  = new QListWidgetItem();
-    listItem->setSizeHint(QSize(0,50));
-    ui->listWidget->addItem(listItem);
-    ui->listWidget->setItemWidget(listItem,wListWidgetItem);
+    for(int i=0;i<10;i++)
+    {
+        WListWidgetItem *wListWidgetItem = new WListWidgetItem(this,QString("xiaomi"),QString("11:21:33:33:34:44"));
+        QListWidgetItem *listItem  = new QListWidgetItem();
+        listItem->setSizeHint(QSize(0,51));
+        listItem->setBackgroundColor(QColor(0,0,0));
+        ui->listWidget->addItem(listItem);
+        ui->listWidget->setItemWidget(listItem,wListWidgetItem);
+    }
+
+
 
 
     WListWidgetItem *wListWidgetItem2 = new WListWidgetItem(this,QString("xiaomi2"),QString("11:21:66:33:34:44"));
     QListWidgetItem *listItem2  = new QListWidgetItem();
-    listItem2->setSizeHint(QSize(0,50));
+    listItem2->setSizeHint(QSize(0,51));
     ui->listWidget->addItem(listItem2);
     ui->listWidget->setItemWidget(listItem2,wListWidgetItem2);
 }
@@ -433,7 +439,7 @@ void MainWindow::updateDevicesList(QVector<Device *> device)
     {
         WListWidgetItem *wListWidgetItem = new WListWidgetItem(this,device[i]->hostname(),device[i]->mac());
         QListWidgetItem *listItem  = new QListWidgetItem();
-        listItem->setSizeHint(QSize(0,60));
+        listItem->setSizeHint(QSize(0,51));
         ui->listWidget->addItem(listItem);
         ui->listWidget->setItemWidget(listItem,wListWidgetItem);
     }

@@ -1,6 +1,8 @@
 #include "wlistwidgetitem.h"
 #include "ui_wlistwidgetitem.h"
 #include <QPicture>
+#include <QBitmap>
+#include <QPainter>
 
 WListWidgetItem::WListWidgetItem(QWidget *parent) :
     QWidget(parent),
@@ -18,9 +20,20 @@ WListWidgetItem::WListWidgetItem(QWidget *parent,const QString &hostname, const 
     ui->label_hostname->setText(hostname);
     ui->label_mac->setText(mac);
 
-    QPicture qp = QPicture();
-    qp.load("/home/lzjqsdd/github/WifiAssist/INSTALL/img/edit.ico");
-    ui->label_logo->setPicture(qp);
+    //ui->label_logo->setPixmap(QPixmap(":cor/img/corpicon/XiaomiCo.ico").scaled(40,40));
+
+    QPixmap original = QPixmap(QString(":cor/img/corpicon/XiaomiCo.ico")).scaled(40,40);
+
+    // Draw the mask.
+    QBitmap  mask(original.size());
+    QPainter painter(&mask);
+    mask.fill(Qt::white);
+    painter.setBrush(Qt::black);
+    painter.drawEllipse(QPoint(mask.width()/2, mask.height()/2), 30, 30);
+
+    // Draw the final image.
+    original.setMask(mask);
+    ui->label_logo->setPixmap(original);
 }
 
 

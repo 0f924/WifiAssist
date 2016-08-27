@@ -43,7 +43,8 @@ DISTFILES +=
 
 RESOURCES += \
     $$PWD/resources/icon.qrc \
-    $$PWD/resources/i18n.qrc
+    $$PWD/resources/i18n.qrc \
+    resources/corpo.qrc
 
 TRANSLATIONS += \
     $$PWD/resources/i18n/en_US.ts \
