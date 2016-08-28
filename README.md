@@ -55,6 +55,7 @@
 ## Snapshot
 ![WifiAssit_init1](https://github.com/lzjqsdd/WifiAssist/blob/master/screenshot/WifiAssistForLinux-Main.png)
 ![WifiAssit_init2](https://github.com/lzjqsdd/WifiAssist/blob/master/screenshot/WifiAssistForLinux-Settings.png)
+![WifiAssit_init2](https://github.com/lzjqsdd/WifiAssist/blob/master/screenshot/WifiAssistForLinux-Device.png)
 ![WifiAssit_init2](https://github.com/lzjqsdd/WifiAssist/blob/master/screenshot/ClientNotify.png)
 
 ## Thanks
