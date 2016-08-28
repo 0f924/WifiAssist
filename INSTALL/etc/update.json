@@ -1,0 +1,10 @@
+{
+  "updates": {
+    "linux": {
+      "open-url": "",
+      "latest-version": "0.8",
+      "download-url": "https://raw.githubusercontent.com/alex-spataru/QSimpleUpdater/master/tutorial/download/YesItWorks.jpg",
+      "changelog": "This is an example changelog for Linux. Go on..."
+    }
+  }
+}

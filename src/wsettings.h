@@ -28,6 +28,8 @@ public:
     QString _AccessPoint;
     QString _Language;
 
+
+
     QString path_exec() const;
     void setPath_exec(const QString &path_exec);
     QString APName() const;
