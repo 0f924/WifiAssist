@@ -22,6 +22,7 @@ private:
 signals:
     void clientAdd(QVector<Device *> devices);
     void clientLeave(QVector<Device *> devices);
+    void clientUpdate(QVector<Device *> devices);
 protected:
     void run();
 };
