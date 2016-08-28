@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setupTrayIcon();
     setupSignalsSlots();
 
-    setupDevicesForTest();
+    //setupDevicesForTest();
 }
 
 MainWindow::~MainWindow()
@@ -391,7 +391,8 @@ void MainWindow::updateNewClients(QVector<Device *> device)
     for(int i=0;i<device.size();i++)
         hostname= hostname+device[i]->hostname()+"\n";
 
-    m_trayIcon->showMessage(tr("WifiAssist"),hostname+tr("Connected To Your AP"),QSystemTrayIcon::Information,1000);
+    m_trayIcon->showMessage(tr("WifiAssist"),hostname+tr("Connected To Your AP"),
+                            QSystemTrayIcon::Information,1000);
 }
 
 void MainWindow::updateLeaveClients(QVector<Device *> device)
@@ -405,31 +406,23 @@ void MainWindow::updateLeaveClients(QVector<Device *> device)
 
 void MainWindow::setupDevicesForTest()
 {
-   // Form *form = new Form(this,"test1","test1");
-   // QListWidgetItem *listItem1 = new QListWidgetItem();
-   // listItem1->setSizeHint(QSize(0, 50));
+    // Form *form = new Form(this,"test1","test1");
+    // QListWidgetItem *listItem1 = new QListWidgetItem();
+    // listItem1->setSizeHint(QSize(0, 50));
 
-   // ui->listWidget->addItem(listItem1);
-   // ui->listWidget->setItemWidget(listItem1,form);
+    // ui->listWidget->addItem(listItem1);
+    // ui->listWidget->setItemWidget(listItem1,form);
 
-    for(int i=0;i<10;i++)
-    {
-        WListWidgetItem *wListWidgetItem = new WListWidgetItem(this,QString("xiaomi"),QString("11:21:33:33:34:44"));
-        QListWidgetItem *listItem  = new QListWidgetItem();
-        listItem->setSizeHint(QSize(0,51));
-        listItem->setBackgroundColor(QColor(255,255,255));
-        ui->listWidget->addItem(listItem);
-        ui->listWidget->setItemWidget(listItem,wListWidgetItem);
-    }
-
-
-
-
-    WListWidgetItem *wListWidgetItem2 = new WListWidgetItem(this,QString("xiaomi2"),QString("11:21:66:33:34:44"));
-    QListWidgetItem *listItem2  = new QListWidgetItem();
-    listItem2->setSizeHint(QSize(0,51));
-    ui->listWidget->addItem(listItem2);
-    ui->listWidget->setItemWidget(listItem2,wListWidgetItem2);
+    //for(int i=0;i<10;i++)
+    //{
+    //    WListWidgetItem *wListWidgetItem = new WListWidgetItem(this,QString("xiaomi"),
+    //                                                           QString("11:21:33:33:34:44"));
+    //    QListWidgetItem *listItem  = new QListWidgetItem();
+    //    listItem->setSizeHint(QSize(0,wListWidgetItem->height()+1));
+    //    listItem->setBackgroundColor(QColor(0,0,0));
+    //    ui->listWidget->addItem(listItem);
+    //    ui->listWidget->setItemWidget(listItem,wListWidgetItem);
+    //}
 }
 
 void MainWindow::updateDevicesList(QVector<Device *> device)
@@ -437,9 +430,14 @@ void MainWindow::updateDevicesList(QVector<Device *> device)
     ui->listWidget->clear();
     for(int i=0;i<device.size();i++)
     {
-        WListWidgetItem *wListWidgetItem = new WListWidgetItem(this,device[i]->hostname(),device[i]->mac());
+        QString macaddress = device[i]->mac();
+        QString logoname = m_wdevices->getDeviceLogoName(macaddress);
+
+        WListWidgetItem *wListWidgetItem = new WListWidgetItem(this,logoname,device[i]->hostname(),
+                                                               device[i]->mac());
         QListWidgetItem *listItem  = new QListWidgetItem();
-        listItem->setSizeHint(QSize(0,51));
+        listItem->setSizeHint(QSize(0,wListWidgetItem->height()+1));
+        listItem->setBackgroundColor(QColor(0,0,0));
         ui->listWidget->addItem(listItem);
         ui->listWidget->setItemWidget(listItem,wListWidgetItem);
     }

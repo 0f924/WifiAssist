@@ -103,3 +103,34 @@ QVector<Device *> WDevices::getUpdateDeviceList() const
 {
     return getDeviceList(m_oldClientsStr);
 }
+
+void WDevices::loadMacInfo()
+{
+
+    QString mac_filename = QCoreApplication::applicationDirPath()+"/etc/macinfo";
+    QFile inputFile(mac_filename);
+    if(inputFile.open(QIODevice::ReadOnly))
+    {
+       QTextStream in(&inputFile);
+       while (!in.atEnd())
+       {
+          QString line = in.readLine();
+          if(line.size() > 0)
+          {
+              QStringList minfo = line.split(QRegExp("\\s+"));
+              m_macinfo.insert(minfo[0],minfo[1]);
+          }
+       }
+       inputFile.close();
+    }
+}
+
+QString WDevices::getDeviceLogoName(QString &deviceMac)
+{
+    QString m_mac = deviceMac.remove(8,9).toUpper(); //get first three mac address;
+    if(m_macinfo.size() == 0)
+    {
+        loadMacInfo();
+    }
+    return m_macinfo.value(m_mac);
+}

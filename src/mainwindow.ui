@@ -376,6 +376,13 @@ border-width:0px</string>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_devices">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <attribute name="icon">
+      <iconset resource="../resources/icon.qrc">
+       <normaloff>:/img/Devices.ico</normaloff>:/img/Devices.ico</iconset>
+     </attribute>
      <attribute name="title">
       <string>Devices</string>
      </attribute>

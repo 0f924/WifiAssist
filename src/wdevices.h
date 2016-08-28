@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QVector>
 #include <QStringList>
+#include <QMap>
 
 #include "device.h"
 
@@ -18,6 +19,7 @@ public:
     QVector<Device *> getNewDeviceList() const;
     QVector<Device *> getLeaveDeviceList() const;
     QVector<Device *> getUpdateDeviceList() const;
+    QString getDeviceLogoName(QString &deviceMac);
 
 private:
     QStringList m_oldClientsStr;
@@ -27,6 +29,8 @@ private:
     QStringList m_leaveDeviceListStr;
     QVector<Device *> m_leaveDeviceList;
     QStringList getDeviceListStr();
+    QMap<QString,QString> m_macinfo;
+    void loadMacInfo();
 
 };
 

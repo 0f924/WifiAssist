@@ -2,7 +2,6 @@
 #include "ui_wlistwidgetitem.h"
 #include <QPicture>
 #include <QBitmap>
-#include <QPainter>
 
 WListWidgetItem::WListWidgetItem(QWidget *parent) :
     QWidget(parent),
@@ -12,31 +11,39 @@ WListWidgetItem::WListWidgetItem(QWidget *parent) :
 }
 
 
-WListWidgetItem::WListWidgetItem(QWidget *parent,const QString &hostname, const QString &mac) :
+WListWidgetItem::WListWidgetItem(QWidget *parent,const QString &logoname,const QString &hostname, const QString &mac) :
     QWidget(parent),
     ui(new Ui::WListWidgetItem)
 {
     ui->setupUi(this);
     ui->label_hostname->setText(hostname);
     ui->label_mac->setText(mac);
-
-    //ui->label_logo->setPixmap(QPixmap(":cor/img/corpicon/XiaomiCo.ico").scaled(40,40));
-
-    QPixmap original = QPixmap(QString("/home/lzjqsdd/github/WifiAssist/resources/img/corpicon/Apple.ico"),"ico").scaled(40,40);
-    // Draw the mask.
-    QBitmap  mask(original.size());
-    QPainter painter(&mask);
-    mask.fill(Qt::white);
-    painter.setBrush(Qt::black);
-    painter.drawEllipse(QPoint(mask.width()/2, mask.height()/2), 30, 30);
-
-    // Draw the final image.
-    original.setMask(mask);
-    ui->label_logo->setPixmap(original);
+    QPixmap original = QPixmap(":cor/img/corpicon/"+logoname+".ico").scaled(50,50);
+    ui->label_logo->setPixmap(PixmapToRound(original,15));
 }
 
 
 WListWidgetItem::~WListWidgetItem()
 {
     delete ui;
+}
+
+QPixmap WListWidgetItem::PixmapToRound(const QPixmap &src, int radius)
+{
+        if (src.isNull()) {
+            return QPixmap();
+        }
+
+        QSize size(2*radius, 2*radius);
+        QBitmap mask(size);
+        QPainter painter(&mask);
+        painter.setRenderHint(QPainter::Antialiasing);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
+        painter.fillRect(0, 0, size.width(), size.height(), Qt::white);
+        painter.setBrush(QColor(0, 0, 0));
+        painter.drawRoundedRect(0, 0, size.width(), size.height(), 99, 99);
+
+        QPixmap image = src.scaled(size);
+        image.setMask(mask);
+        return image;
 }

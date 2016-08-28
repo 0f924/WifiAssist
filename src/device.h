@@ -17,6 +17,13 @@ public:
     QString logo() const;
     void setLogo(const QString &logo);
 
+    //enum LOGO
+    //{
+    //    SONY = ":img/corpicon/Sony.png",
+    //    Xiaomi = ":img/corpicon/XiaomiCo.png",
+    //    Apple = ":img/corpicon/Apple.png"
+    //};
+
 private:
     QString _ip;
     QString _mac;
