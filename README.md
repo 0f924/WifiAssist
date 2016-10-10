@@ -3,11 +3,21 @@
 ## WifiAssit
   The easy way to use Wifi through PC.
   类似windows平台下的猎豹免费wifi
-  
+
 ## Lastest Version(最新版) [Download](https://github.com/lzjqsdd/WifiAssist/archive/v0.8.zip)  
-  
-  
-## TODOLIST
+
+
+
+## 测试机型
+
+WifiAssist在Ubuntu14.04下开发。在以下系统测试及问题：
+
+Ubuntu14.04 测试通过
+
+Deepin15.2/3 出现 `Refusing to render service to dead parents.`
+
+
+
 - [x] 简单开启并关闭wifi
 - [x] 增加接入点设置、wifi名称、密码设置,重置设置
 - [x] 桌面图标启动
@@ -19,19 +29,21 @@
 - [x] 增加接入设备气泡提示
 - [x] 接入设备列表页
 - [x] 接入设备列表的设备logo显示
+- [ ] 增加高级设置项
+- [ ] 气泡控制提示
 - [ ] 接入设备限速控制、踢人
 - [ ] 自动更新
 
 ## Install
 
-  ```shell
+```shell
   git clone https://github.com/lzjqsdd/WifiAssist.git
   cd WifiAssist
   sudo ./install.sh
-  ```
-  
+```
+
 ## 或编译安装(32为系统需要自己编译)
-  ```
+```shell
   sudo apt-get update -qq
   sudo apt-get -y install qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
   sudo apt-get -y install qt5-default qttools5-dev-tools
@@ -41,16 +53,16 @@
   make
   cd ../INSTALL
   sudo ./install.sh
-  ```
-  
+```
+
 ## 运行
 - 终端执行WifiAssist
 - 或dash搜索应用WifiAssit，点击图标执行。
 
 ## Uninstall
-  ```shell
+```shell
   ./uninstall.sh
-  ```
+```
   （建议卸载按照install.sh中的命令对应着逐个删除。）
 ## Snapshot
 ![WifiAssit_init1](https://github.com/lzjqsdd/WifiAssist/blob/master/screenshot/WifiAssistForLinux-Main.png)
